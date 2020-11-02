@@ -1,26 +1,51 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, Image, Text, View} from 'react-native';
-import {AlbumBoxs, ListAlbumBoxs} from '../asset/styles/styled';
-import { styles, textStyles } from '../asset/styles/styles';
+import React from 'react';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import { styles } from '../asset/styles/styled';
 
-const ListAlbums = (props) => {
-  const {musicFeatured, isloading} = props;
-  return (
-    isloading && (
-      <ListAlbumBoxs
-        data={musicFeatured}
-        keyExtractor={(item) => String(item.id)}
-        showsHorizontalScrollIndicator={false}
-        horizontal={true}
-        renderItem={({item}) => (
-          <AlbumBoxs>
-            <Image source={require('../asset/image/newfeed9.jpg')} style={styles.albumImage}/>
-            <Text style={textStyles.h3}>{item.name}</Text>
+const ListAlbums = ({articles,isloading,Song,setSong,setIsplaying,setModalVisible}) => {
+  // const {musicFeatured, isloading} = props;
+  const PlaySong = (id, name, url, singer, image) => {
+    setSong({
+      idsong: id,
+      namesong: name,
+      urlsong: url,
+      singersong: singer,
+      imagesong: image,
+    });
+    setIsplaying(true);
+    setModalVisible(true);
+  };
+  const renderItem = ({item, index}) => {
+    if (index < 11) {
+      return (
+        <TouchableOpacity
+          onPress={() =>
+            PlaySong(item.id, item.name, item.url, item.singer, item.image)
+          }>
+          <View>
+            <Image
+              source={{uri: item.image}}
+              style={styles.DashboardImageFeatured}
+            />
+            <Text style={{fontWeight: 'bold'}}>{item.name}</Text>
             <Text style={{color: 'gray'}}>{item.singer}</Text>
-          </AlbumBoxs>
-        )}
-      />
-    )
+          </View>
+        </TouchableOpacity>
+      );
+    }
+  };
+  return (
+    <View style={styles.DashboardFeatured}>
+        {isloading ? (
+          <FlatList
+            data={articles}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.name}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+          />
+        ) : null}
+      </View>
   );
 };
 
