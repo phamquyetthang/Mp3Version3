@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import ListAlbums from '../../../components/ListAlbums';
 import Playmusic from '../Playmusic';
 import {stylescreen} from './styled';
 
@@ -29,36 +30,6 @@ const Dashboard = () => {
     }
     getdata();
   }, []);
-  const PlaySong = (id, name, url, singer, image) => {
-    setSong({
-      idsong: id,
-      namesong: name,
-      urlsong: url,
-      singersong: singer,
-      imagesong: image,
-    });
-    setIsplaying(true);
-    setModalVisible(true);
-  };
-  const renderItem = ({item, index}) => {
-    if (index < 11) {
-      return (
-        <TouchableOpacity
-          onPress={() =>
-            PlaySong(item.id, item.name, item.url, item.singer, item.image)
-          }>
-          <View>
-            <Image
-              source={{uri: item.image}}
-              style={stylescreen.DashboardImageFeatured}
-            />
-            <Text style={{fontWeight: 'bold'}}>{item.name}</Text>
-            <Text style={{color: 'gray'}}>{item.singer}</Text>
-          </View>
-        </TouchableOpacity>
-      );
-    }
-  };
   const renderItem2 = ({item, index}) => {
     return (
       <TouchableOpacity>
@@ -81,17 +52,10 @@ const Dashboard = () => {
         <Icon name="align-left" size={28} />
       </View>
       <Text style={stylescreen.DashboardTextFeatured}>Featured Tracks</Text>
-      <View style={stylescreen.DashboardFeatured}>
-        {isloading ? (
-          <FlatList
-            data={musicFeatured}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.name}
-            showsHorizontalScrollIndicator={false}
-            horizontal={true}
-          />
-        ) : null}
-      </View>
+      <ListAlbums articles={musicFeatured} isloading={isloading} Song={song} setSong={setSong} setIsplaying={setIsplaying} setModalVisible={setModalVisible}/>
+      <Text sstyle={stylescreen.DashboardTextFeatured}>-</Text>
+      <ListAlbums articles={musicFeatured} isloading={isloading} Song={song} setSong={setSong} setIsplaying={setIsplaying} setModalVisible={setModalVisible}/>
+      
       <Text style={stylescreen.DashboardTextFeatured}>Top Tracks</Text>
       <View style={stylescreen.DashboardToptracks}>
         {isloading ? (
