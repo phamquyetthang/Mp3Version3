@@ -1,10 +1,11 @@
-import React from 'react'
-import Router from './src/containers/Router'
+import React from 'react';
+import Router from './src/containers/Router';
 
 const App = () => {
   return (
-    <Router />
-  )
-}
+  <Router />
+  // <Progress />
+  );
+};
 
-export default App
+export default App;
