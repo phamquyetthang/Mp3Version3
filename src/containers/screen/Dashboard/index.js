@@ -17,6 +17,7 @@ const Dashboard = () => {
     urlsong: '',
     singersong: '',
     imagesong: '',
+    time:0
   });
   useEffect(() => {
     async function getdata() {
@@ -24,7 +25,7 @@ const Dashboard = () => {
         'https://fakeserver-musicaap.herokuapp.com/music',
       );
       const jsonData = await respone.json();
-      // console.log(jsonData)
+      
       setMusicFeatured(jsonData);
       setIsloading(true);
     }

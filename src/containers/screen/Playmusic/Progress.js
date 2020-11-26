@@ -21,11 +21,12 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-const Progress = () => {
+const Progress = (time) => {
   let animation = useRef(new Animated.Value(0));
   const [progress, setProgress] = useState(0);
+  // console.log("time ",time.time)
   useInterval(() => {
-    if (progress < 100) {
+    if (progress < time.time) {
       setProgress(progress + 1);
     }
   }, 1000);
@@ -33,13 +34,14 @@ const Progress = () => {
   useEffect(() => {
     Animated.timing(animation.current, {
       toValue: progress,
-      duration: 100,
+      duration: time.time,
       useNativeDriver: false,
     }).start();
+    
   }, [progress]);
 
   const width = animation.current.interpolate({
-    inputRange: [0, 100],
+    inputRange: [0, time.time],
     outputRange: ['0%', '100%'],
     extrapolate: 'clamp',
   });

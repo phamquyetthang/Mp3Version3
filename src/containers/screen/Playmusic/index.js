@@ -30,11 +30,11 @@ export default function Playmusic({
       setIsPlay(false);
     }
   };
-  console.log(song);
+  // console.log(song.time);
   return (
     <View>
       <View style={{backgroundColor: '#2A1B39'}}>
-        <Progress />
+        <Progress  time={song.time}/>
         <View
           style={{
             flexDirection: 'row',

@@ -4,13 +4,14 @@ import { styles } from '../asset/styles/styled';
 
 const ListAlbums = ({articles,isloading,Song,setSong,setIsplaying,setModalVisible}) => {
   // const {musicFeatured, isloading} = props;
-  const PlaySong = (id, name, url, singer, image) => {
+  const PlaySong = (id, name, url, singer, image,time) => {
     setSong({
       idsong: id,
       namesong: name,
       urlsong: url,
       singersong: singer,
       imagesong: image,
+      time : time
     });
     setIsplaying(true);
     setModalVisible(true);
@@ -20,7 +21,7 @@ const ListAlbums = ({articles,isloading,Song,setSong,setIsplaying,setModalVisibl
       return (
         <TouchableOpacity
           onPress={() =>
-            PlaySong(item.id, item.name, item.url, item.singer, item.image)
+            PlaySong(item.id, item.name, item.url, item.singer, item.image, item.time)
           }>
           <View>
             <Image
