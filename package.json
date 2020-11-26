@@ -25,6 +25,7 @@
     "react-native-tab-view": "^2.15.2",
     "react-native-track-player": "^1.2.3",
     "react-native-vector-icons": "^7.1.0",
+    "redux": "^4.0.5",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
