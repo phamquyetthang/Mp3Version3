@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Modal, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import TrackPlayer from 'react-native-track-player';
 import Progress from './Progress';
@@ -33,7 +40,9 @@ export default function Playmusic({
   // console.log(song.time);
   return (
     <View>
-      <View style={{backgroundColor: '#2A1B39'}}>
+      <TouchableOpacity
+        onPress={() => setModalVisible(true)}
+        style={{backgroundColor: '#2A1B39'}}>
         <Progress  time={song.time}/>
         <View
           style={{
@@ -70,7 +79,7 @@ export default function Playmusic({
             />
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
       <Modal animationType="slide" visible={modalVisible}>
         <View
           style={{alignItems: 'center', flex: 1, backgroundColor: 'hotpink'}}>

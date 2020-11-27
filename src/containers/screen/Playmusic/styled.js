@@ -59,3 +59,5 @@ export const PlayCard = styled.TouchableOpacity`
   position: absolute;
   bottom: 0px;
 `;
+
+export const PopupMusic =  styled.View``;
