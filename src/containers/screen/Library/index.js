@@ -7,7 +7,7 @@ const Library = () => {
         async function getdata (){
             const respone = await fetch("https://fakeserver-musicaap.herokuapp.com/user")
             const jsonData = await respone.json() 
-             console.log(jsonData.mymusic)
+            //  console.log(jsonData.mymusic)
              setMylibrary(jsonData.mymusic)
              
         }

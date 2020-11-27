@@ -37,13 +37,13 @@ export default function Playmusic({
       setIsPlay(false);
     }
   };
-  console.log(song);
+  // console.log(song.time);
   return (
     <View>
       <TouchableOpacity
         onPress={() => setModalVisible(true)}
         style={{backgroundColor: '#2A1B39'}}>
-        <Progress />
+        <Progress  time={song.time}/>
         <View
           style={{
             flexDirection: 'row',
