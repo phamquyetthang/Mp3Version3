@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useDispatch } from 'react-redux';
 import ListAlbums from '../../../components/ListAlbums';
 import Playmusic from '../Playmusic';
 import {stylescreen} from './styled';
@@ -17,15 +18,19 @@ const Dashboard = () => {
     urlsong: '',
     singersong: '',
     imagesong: '',
-    time:0
+    time: 0,
   });
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch
+  }, [])
   useEffect(() => {
     async function getdata() {
       const respone = await fetch(
         'https://fakeserver-musicaap.herokuapp.com/music',
       );
       const jsonData = await respone.json();
-      
+
       setMusicFeatured(jsonData);
       setIsloading(true);
     }
@@ -53,10 +58,24 @@ const Dashboard = () => {
         <Icon name="align-left" size={28} />
       </View>
       <Text style={stylescreen.DashboardTextFeatured}>Featured Tracks</Text>
-      <ListAlbums articles={musicFeatured} isloading={isloading} Song={song} setSong={setSong} setIsplaying={setIsplaying} setModalVisible={setModalVisible}/>
+      <ListAlbums
+        articles={musicFeatured}
+        isloading={isloading}
+        Song={song}
+        setSong={setSong}
+        setIsplaying={setIsplaying}
+        setModalVisible={setModalVisible}
+      />
       <Text sstyle={stylescreen.DashboardTextFeatured}>-</Text>
-      <ListAlbums articles={musicFeatured} isloading={isloading} Song={song} setSong={setSong} setIsplaying={setIsplaying} setModalVisible={setModalVisible}/>
-      
+      <ListAlbums
+        articles={musicFeatured}
+        isloading={isloading}
+        Song={song}
+        setSong={setSong}
+        setIsplaying={setIsplaying}
+        setModalVisible={setModalVisible}
+      />
+
       <Text style={stylescreen.DashboardTextFeatured}>Top Tracks</Text>
       <View style={stylescreen.DashboardToptracks}>
         {isloading ? (

@@ -25,7 +25,9 @@
     "react-native-tab-view": "^2.15.2",
     "react-native-track-player": "^1.2.3",
     "react-native-vector-icons": "^7.1.0",
+    "react-redux": "^7.2.2",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
@@ -36,7 +38,8 @@
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "redux-devtools": "^3.7.0"
   },
   "jest": {
     "preset": "react-native"
