@@ -1,25 +1,77 @@
-import React, {useEffect, useState} from 'react';
-import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {styles} from './styles';
-// import ListAlbums2 from '../../../components/ListAlbums2';
+import * as shape from 'd3-shape';
+import {LineChart, XAxis} from 'react-native-svg-charts';
 
 const Trendy = () => {
-  const [newreleases, setNewreleases] = useState([]);
-  const [isloading, setIsloading] = useState(false);
-  useEffect(() => {
-    async function getdata() {
-      const respone = await fetch(
-        'https://fakeserver-musicaap.herokuapp.com/boleromusic',
-      );
-      const jsonData = await respone.json();
-      //   console.log(jsonData)
-      setNewreleases(jsonData);
-      setIsloading(true);
-    }
-    getdata();
-  }, []);
+  const [state, setState] = useState({
+    linePress: null,
+  });
+  function onLinePress(n) {
+    console.log(n);
+    setState({
+      ...state,
+      linePress: n,
+    });
+  }
+  const data = [
+    {
+      data: data3,
+      svg: {
+        stroke: 'purple',
+        onPress: () => onLinePress('1'),
+        strokeWidth: state.linePress === '1' ? 3 : 1,
+      },
+    },
+    {
+      data: data4,
+      svg: {
+        stroke: 'rgba(34, 128, 176, 0.5)',
+        onPress: () => onLinePress('2'),
+        strokeWidth: state.linePress === '2' ? 3 : 1,
+      },
+    },
+  ];
   return (
     <ScrollView style={styles.container}>
+      <View style={{padding: 4}}>
+        <View style={{height: 200}}>
+          <LineChart
+            style={{height: 200}}
+            data={data}
+            yAccessor={({item}) => item.value}
+            xAccessor={({item}) => item.date}
+            contentInset={{top: 20, bottom: 20}}
+            curve={shape.curveNatural}>
+            {/* <Grid /> */}
+          </LineChart>
+        </View>
+        <XAxis
+          data={data3}
+          svg={{
+            fill: '#fff',
+            fontSize: 12,
+            fontWeight: 'bold',
+            rotation: 20,
+            originY: 30,
+            y: 5,
+          }}
+          xAccessor={({item}) => item.date}
+          // scale={scale.scaleTime}
+          numberOfTicks={6}
+          style={{marginHorizontal: -15, height: 20}}
+          contentInset={{left: 10, right: 25}}
+        />
+      </View>
+
       <View style={{marginTop: 8}}>
         <Text style={{fontWeight: 'bold', fontSize: 20}}>Top 50</Text>
       </View>
@@ -67,5 +119,49 @@ const Trendy = () => {
     </ScrollView>
   );
 };
+const data3 = [
+  {value: 15, date: 10},
+  {value: 10, date: 11},
+  {value: 14, date: 12},
+  {value: 15, date: 13},
+  {value: 14, date: 14},
+  {value: 18, date: 15},
+];
+
+const data4 = [
+  {value: 12, date: 10},
+  {value: 14, date: 11},
+  {value: 15, date: 12},
+  {value: 14, date: 13},
+  {value: 17, date: 14},
+  {value: 15, date: 15},
+];
 
 export default Trendy;
+/* <View style={{height: 200}}>
+          <AreaChart
+            style={{flex: 1}}
+            data={data3}
+            svg={{
+              fill: 'rgba(134, 65, 244, 0.5)',
+              onPress: () => console.log('bam chart 1'),
+              // stroke: 'rgba(134, 65, 244)',
+            }}
+            contentInset={{top: 20, bottom: 20}}
+            curve={shape.curveNatural}
+            yAccessor={({item}) => item.value}
+            xAccessor={({item}) => item.date}
+          />
+          <AreaChart
+            style={StyleSheet.absoluteFill}
+            data={data4}
+            svg={{
+              fill: 'rgba(34, 128, 176, 0.5)',
+              onPress: () => console.log('bam chart 2'),
+            }}
+            contentInset={{top: 20, bottom: 20}}
+            curve={shape.curveNatural}
+            yAccessor={({item}) => item.value}
+            xAccessor={({item}) => item.date}
+          />
+        </View> */

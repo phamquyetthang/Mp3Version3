@@ -3,8 +3,8 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
+    backgroundColor: '#220c38',
+    paddingHorizontal: 12,
   },
   top50: {
     width: '100%',

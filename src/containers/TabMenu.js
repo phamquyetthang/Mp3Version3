@@ -19,7 +19,7 @@ const TabMenu = () => {
         inactiveTintColor: '#99999F',
         showIcon: true,
         showLabel: false,
-        style: {height: 56, backgroundColor: '#FFFFFF'},
+        style: {height: 56, backgroundColor: '#0d021a'},
       }}>
       <Tab.Screen
         name="Dashboard"
