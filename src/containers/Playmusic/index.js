@@ -10,6 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import TrackPlayer from 'react-native-track-player';
 import Progress from './Progress';
+import {useSelector} from 'react-redux';
 export default function Playmusic({
   modalVisible,
   setModalVisible,
@@ -26,8 +27,10 @@ export default function Playmusic({
         artwork: song.imagesong,
       });
     });
+    console.log('k', state);
   }, []);
   const [isPlay, setIsPlay] = useState(false);
+  const state = useSelector((state) => state.postService);
   const playmussic = () => {
     if (!isPlay) {
       TrackPlayer.play();

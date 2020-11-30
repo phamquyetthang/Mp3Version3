@@ -2,48 +2,23 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
+export const FETCH_API = 'FETCH_API';
+import {createActions} from 'redux-actions';
 
-export const selectSubreddit = (subreddit) => ({
-  type: SELECT_SUBREDDIT,
-  subreddit,
+const actions = createActions({
+  ON_LOADING_ACTION: null,
+  OFF_LOADING_ACTION: null,
+  FETCH_ASYNC_ACTION2: (body_api) => body_api,
+  SET_DATA_ACTION: null,
 });
 
-export const invalidateSubreddit = (subreddit) => ({
-  type: INVALIDATE_SUBREDDIT,
-  subreddit,
+export const {
+  onLoadingAction,
+  offLoadingAction,
+  fetchAsyncAction2,
+  setDataAction,
+} = actions;
+export const fetchAsyncAction = (endpoint) => ({
+  type: FETCH_API,
+  endpoint: endpoint,
 });
-
-export const requestPosts = (subreddit) => ({
-  type: REQUEST_POSTS,
-  subreddit,
-});
-
-export const receivePosts = (subreddit, json) => ({
-  type: RECEIVE_POSTS,
-  subreddit,
-  data: json,
-});
-
-export const fetchPosts = (endpoint) => (dispatch) => {
-  dispatch(requestPosts(endpoint));
-  return fetch(`https://fakeserver-musicaap.herokuapp.com/${endpoint}`)
-    .then((response) => response.json())
-    .then((json) => dispatch(receivePosts(endpoint, json)));
-};
-
-// const shouldFetchPosts = (state, subreddit) => {
-//   const posts = state.postsBySubreddit[subreddit];
-//   if (!posts) {
-//     return true;
-//   }
-//   if (posts.isFetching) {
-//     return false;
-//   }
-//   return posts.didInvalidate;
-// };
-
-// export const fetchPostsIfNeeded = (subreddit) => (dispatch, getState) => {
-//   if (shouldFetchPosts(getState(), subreddit)) {
-//     return dispatch(fetchPosts(subreddit));
-//   }
-// };

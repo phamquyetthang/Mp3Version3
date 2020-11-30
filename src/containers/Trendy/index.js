@@ -25,7 +25,7 @@ const Trendy = () => {
       </View>
       <TouchableOpacity style={styles.top50}>
         <Image
-          source={require('../../../asset/image/newfeed11.jpg')}
+          source={require('../../asset/image/newfeed11.jpg')}
           style={styles.imagetop50}
         />
         <View>
@@ -35,7 +35,7 @@ const Trendy = () => {
       </TouchableOpacity>
       <TouchableOpacity style={[styles.top50, {backgroundColor: '#74b9ff'}]}>
         <Image
-          source={require('../../../asset/image/newfeed11.jpg')}
+          source={require('../../asset/image/newfeed11.jpg')}
           style={styles.imagetop50}
         />
         <View>
@@ -48,7 +48,7 @@ const Trendy = () => {
       </TouchableOpacity>
       <TouchableOpacity style={[styles.top50, {backgroundColor: '#fab1a0'}]}>
         <Image
-          source={require('../../../asset/image/newfeed11.jpg')}
+          source={require('../../asset/image/newfeed11.jpg')}
           style={styles.imagetop50}
         />
         <View>

@@ -27,6 +27,7 @@ const ListAlbums = ({
     if (index < 11) {
       return (
         <TouchableOpacity
+          key={index}
           onPress={() =>
             PlaySong(
               item.id,
