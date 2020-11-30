@@ -37,7 +37,6 @@ const Progress = (time) => {
       duration: time.time,
       useNativeDriver: false,
     }).start();
-    
   }, [progress]);
 
   const width = animation.current.interpolate({

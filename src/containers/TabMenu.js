@@ -2,11 +2,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Dashboard from './screen/Dashboard';
-import Library from './screen/Library';
-import Download from './screen/Download';
-import Trendy from './screen/Trendy';
-import User from './screen/User';
+import Dashboard from './Dashboard';
+import Library from './Library';
+import Download from './Download';
+import Trendy from './Trendy';
+import User from './User';
+
 const Tab = createMaterialTopTabNavigator();
 const TabMenu = () => {
   return (

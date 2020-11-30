@@ -1,10 +1,13 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import Router from './src/containers/Router';
+import {store} from './src/redux/store';
 
 const App = () => {
   return (
-  <Router />
-  // <Progress />
+    <Provider store={store}>
+      <Router />
+    </Provider>
   );
 };
 

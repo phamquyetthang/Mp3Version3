@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-export const styles = StyleSheet.create({
+export const stylescreen = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
     // backgroundColor:"red",
     width: '100%',
-    flex: 0.5,
+    flex: 0.3,
   },
   DashboardImageFeatured: {
     width: 120,
