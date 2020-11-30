@@ -56,7 +56,7 @@ const ListAlbums = ({
         <FlatList
           data={articles}
           renderItem={renderItem}
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
           horizontal={true}
         />

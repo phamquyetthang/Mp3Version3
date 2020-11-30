@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Image, Text, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import ListAlbums from '../../components/ListAlbums';
 import Loading from '../../components/Loading';
-import {fetchAsyncAction2} from '../../redux/actions';
+import {fetchAsyncAction} from '../../redux/actions';
 import Playmusic from '../Playmusic';
 import {stylescreen} from './styled';
 
@@ -31,7 +31,7 @@ const Dashboard = () => {
       endpoint: 'music',
       callback: (error, result) => callBackFetch(error, result),
     };
-    dispatch(fetchAsyncAction2(body_api));
+    dispatch(fetchAsyncAction(body_api));
   }, []);
   function callBackFetch(error, result) {
     console.log('k2');

@@ -1,6 +1,6 @@
-import {call, put, retry, takeLatest} from 'redux-saga/effects';
+import {call, put, takeLatest, all, fork} from 'redux-saga/effects';
 import {
-  fetchAsyncAction2,
+  fetchAsyncAction,
   offLoadingAction,
   onLoadingAction,
   setDataAction,
@@ -8,18 +8,18 @@ import {
 const fetchAsyncService = async (endpoint) => {
   console.log('k41', endpoint);
   try {
-    let respone = await fetch(
+    let response = await fetch(
       `https://fakeserver-musicaap.herokuapp.com/${endpoint}`,
     );
-    return respone.json();
+    return response.json();
   } catch (error) {
     console.log('k42', error);
     throw error;
   }
 };
-export function* fetchAsyncWatch() {
+function* fetchAsyncWatch() {
   console.log('k3');
-  yield takeLatest(fetchAsyncAction2, function* ({payload}) {
+  yield takeLatest(fetchAsyncAction, function* ({payload}) {
     console.log('k4', payload);
     try {
       yield put(onLoadingAction());
@@ -43,6 +43,9 @@ export function* fetchAsyncWatch() {
   });
 }
 
+export default function* rootSaga() {
+  yield all([fetchAsyncWatch].map(fork));
+}
 // export default {
 //   fetchAsyncWatch,
 // };
