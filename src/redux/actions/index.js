@@ -8,17 +8,17 @@ import {createActions} from 'redux-actions';
 const actions = createActions({
   ON_LOADING_ACTION: null,
   OFF_LOADING_ACTION: null,
-  FETCH_ASYNC_ACTION2: (body_api) => body_api,
+  FETCH_ASYNC_ACTION: (body_api) => body_api,
   SET_DATA_ACTION: null,
 });
 
 export const {
   onLoadingAction,
   offLoadingAction,
-  fetchAsyncAction2,
+  fetchAsyncAction,
   setDataAction,
 } = actions;
-export const fetchAsyncAction = (endpoint) => ({
-  type: FETCH_API,
-  endpoint: endpoint,
-});
+// export const fetchAsyncAction = (endpoint) => ({
+//   type: FETCH_API,
+//   endpoint: endpoint,
+// });
