@@ -1,8 +1,17 @@
 import {handleActions} from 'redux-actions';
-import {offLoadingAction, onLoadingAction, setDataAction} from '../actions';
+import {
+  offLoadingAction,
+  onLoadingAction,
+  setDataAction,
+  setIsPlayingAction,
+} from '../actions';
 const initialState = {
   isLoading: false,
   listMusic: [],
+  playing: {
+    isPlaying: false,
+    item: {},
+  },
 };
 export default handleActions(
   {
@@ -11,6 +20,13 @@ export default handleActions(
     [setDataAction.toString()]: (state, {payload}) => ({
       ...state,
       listMusic: payload,
+    }),
+    [setIsPlayingAction.toString()]: (state, {payload}) => ({
+      ...state,
+      playing: {
+        isPlaying: true,
+        item: payload,
+      },
     }),
   },
   initialState,

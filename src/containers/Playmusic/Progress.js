@@ -24,7 +24,6 @@ function useInterval(callback, delay) {
 const Progress = (time) => {
   let animation = useRef(new Animated.Value(0));
   const [progress, setProgress] = useState(0);
-  // console.log("time ",time.time)
   useInterval(() => {
     if (progress < time.time) {
       setProgress(progress + 1);

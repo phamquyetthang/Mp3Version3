@@ -6,21 +6,17 @@ import {
   setDataAction,
 } from '../actions';
 const fetchAsyncService = async (endpoint) => {
-  console.log('k41', endpoint);
   try {
     let response = await fetch(
       `https://fakeserver-musicaap.herokuapp.com/${endpoint}`,
     );
     return response.json();
   } catch (error) {
-    console.log('k42', error);
     throw error;
   }
 };
 function* fetchAsyncWatch() {
-  console.log('k3');
   yield takeLatest(fetchAsyncAction, function* ({payload}) {
-    console.log('k4', payload);
     try {
       yield put(onLoadingAction());
       const {endpoint} = payload;
@@ -30,7 +26,6 @@ function* fetchAsyncWatch() {
         if (payload?.callback) {
           payload.callback('', result);
         }
-        console.log('k5', result[0]);
       }
     } catch (error) {
       // else if (payload?.callback) payload.callback("Server Error", {});
@@ -42,7 +37,6 @@ function* fetchAsyncWatch() {
     }
   });
 }
-
 export default function* rootSaga() {
   yield all([fetchAsyncWatch].map(fork));
 }
