@@ -1,9 +1,16 @@
 import {StyleSheet} from 'react-native';
+import {unitH} from './size';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#220c38',
+  },
+  playBox: {
+    position: 'absolute',
+    zIndex: 2222,
+    width: '100%',
+    bottom: 56 * unitH,
   },
   DashboardHeader: {
     padding: 20,

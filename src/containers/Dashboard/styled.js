@@ -3,7 +3,8 @@ import {StyleSheet} from 'react-native';
 export const stylescreen = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#220c38',
+    color: '#fff',
   },
   DashboardHeader: {
     padding: 20,
@@ -26,10 +27,10 @@ export const stylescreen = StyleSheet.create({
     borderRadius: 4,
   },
   DashboardToptracks: {
-    width: '100%',
-    flex: 0.7,
+    // width: '100%',
+    flex: 0.9,
     // backgroundColor:"gray",
-    marginLeft: 20,
+    // marginLeft: 20,
   },
   DashboardImageToptracks: {
     width: 60,
