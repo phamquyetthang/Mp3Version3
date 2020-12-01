@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, ScrollView, Text, View} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useDispatch, useSelector} from 'react-redux';
 import ListAlbums from '../../components/ListAlbums';
 import Loading from '../../components/Loading';
+import SongItem from '../../components/SongItem';
 import {fetchAsyncAction} from '../../redux/actions';
 import Playmusic from '../Playmusic';
 import {stylescreen} from './styled';
@@ -60,7 +61,7 @@ const Dashboard = () => {
   return state.music.length === 0 ? (
     <Loading />
   ) : (
-    <View style={stylescreen.container}>
+    <ScrollView style={stylescreen.container}>
       <View style={stylescreen.DashboardHeader}>
         <Icon name="align-left" size={28} />
       </View>
@@ -78,22 +79,14 @@ const Dashboard = () => {
         {state.music.length !== 0 ? (
           <FlatList
             data={state.music}
-            renderItem={renderItem2}
+            renderItem={SongItem}
             keyExtractor={(item) => item.url}
             showsVerticalScrollIndicator={false}
             // horizontal={true}
           />
         ) : null}
       </View>
-      {playing.isPlaying && (
-        <Playmusic
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-          song={playing.item}
-          setSong={setSong}
-        />
-      )}
-    </View>
+    </ScrollView>
   );
 };
 
