@@ -7,10 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Ionicons';
 import TrackPlayer from 'react-native-track-player';
 import Progress from './Progress';
 import {useSelector} from 'react-redux';
+import {unitH, unitW} from '../../asset/styles/size';
 export default function Playmusic({
   modalVisible,
   setModalVisible,
@@ -18,19 +19,18 @@ export default function Playmusic({
   setSong,
 }) {
   useEffect(() => {
+    console.log(song);
     TrackPlayer.setupPlayer().then(async () => {
       await TrackPlayer.add({
         id: 'trackId',
-        url: song.urlsong,
+        url: song.url,
         title: 'Track Title',
         artist: 'Track Artist',
-        artwork: song.imagesong,
+        artwork: song.image,
       });
     });
-    console.log('k', state);
-  }, []);
+  }, [song]);
   const [isPlay, setIsPlay] = useState(false);
-  const state = useSelector((state) => state.postService);
   const playmussic = () => {
     if (!isPlay) {
       TrackPlayer.play();
@@ -40,7 +40,6 @@ export default function Playmusic({
       setIsPlay(false);
     }
   };
-  // console.log(song.time);
   return (
     <View>
       <TouchableOpacity
@@ -50,32 +49,35 @@ export default function Playmusic({
         <View
           style={{
             flexDirection: 'row',
-            padding: 4,
+            padding: 4 * unitW,
           }}>
-          <Image
-            source={{uri: song.imagesong}}
-            style={styles.imagesongbottom}
-          />
+          <Image source={{uri: song.image}} style={styles.imagesongbottom} />
           <View>
-            <Text style={{fontSize: 18, color: '#fff'}}>{song.namesong}</Text>
-            <Text style={{color: '#fff'}}>{song.singersong}</Text>
+            <Text style={{fontSize: 18, color: '#fff'}}>{song.name}</Text>
+            <Text style={{color: '#fff'}}>{song.singer}</Text>
           </View>
           <View
             style={{
               flexDirection: 'row',
               alignSelf: 'center',
-              right: 8,
+              right: 8 * unitW,
               position: 'absolute',
             }}>
             <Icon
-              name={isPlay ? 'pause' : 'play'}
+              name={'md-heart-outline'}
+              color="#fff"
+              size={22}
+              onPress={() => setModalVisible(false)}
+            />
+            <Icon
+              name={isPlay ? 'md-pause' : 'md-play'}
               color="#fff"
               size={22}
               onPress={playmussic}
-              style={{marginHorizontal: 20}}
+              style={{marginHorizontal: 20 * unitW}}
             />
             <Icon
-              name={'step-forward'}
+              name={'md-play-skip-forward'}
               color="#fff"
               size={22}
               onPress={() => setModalVisible(false)}
@@ -87,27 +89,27 @@ export default function Playmusic({
         <View
           style={{alignItems: 'center', flex: 1, backgroundColor: 'hotpink'}}>
           <View>
-            <Image source={{uri: song.imagesong}} style={styles.imagesong} />
+            <Image source={{uri: song.image}} style={styles.imagesong} />
           </View>
           {/* <Button title="ok" onPress={()=>setModalVisible(false)}/> */}
-          <Text style={styles.nameplay}>{song.namesong}</Text>
-          <Text style={styles.singerplay}>{song.singersong}</Text>
+          <Text style={styles.nameplay}>{song.name}</Text>
+          <Text style={styles.singerplay}>{song.singer}</Text>
           <View style={styles.plpau}>
             <Icon
-              name={'step-backward'}
+              name={'md-play-skip-back'}
               color="#fff"
               size={22}
               onPress={() => setModalVisible(false)}
             />
             <Icon
-              name={isPlay ? 'pause' : 'play'}
+              name={isPlay ? 'md-pause' : 'md-play'}
               color="#fff"
               size={22}
               onPress={playmussic}
-              style={{marginHorizontal: 60}}
+              style={{marginHorizontal: 60 * unitW}}
             />
             <Icon
-              name={'step-forward'}
+              name={'md-play-skip-forward'}
               color="#fff"
               size={22}
               onPress={() => setModalVisible(false)}
@@ -119,30 +121,17 @@ export default function Playmusic({
   );
 }
 const styles = StyleSheet.create({
-  Readbookbotomplayusic: {
-    backgroundColor: 'hotpink',
-    width: '100%',
-    height: 60,
-    position: 'absolute',
-    bottom: 0,
-    //   zIndex: 10,
-    justifyContent: 'space-between',
-    paddingHorizontal: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-  },
   imagesongbottom: {
-    height: 48,
-    width: 48,
-    marginRight: 8,
+    height: 48 * unitH,
+    width: 48 * unitW,
+    marginRight: 8 * unitW,
     borderRadius: 4,
   },
   imagesong: {
-    width: 250,
-    height: 250,
+    width: 250 * unitW,
+    height: 250 * unitH,
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: 60 * unitH,
     borderRadius: 8,
   },
   modalsong: {
@@ -151,21 +140,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 20,
+    marginLeft: 20 * unitW,
   },
   nameplay: {
     fontWeight: 'bold',
-    marginTop: 16,
+    marginTop: 16 * unitH,
     fontSize: 20,
   },
   singerplay: {
     color: '#fff',
-    marginTop: 4,
+    marginTop: 4 * unitH,
   },
   plpau: {
     flexDirection: 'row',
-    paddingTop: 16,
-    height: 60,
+    paddingTop: 16 * unitH,
+    height: 60 * unitH,
     // margintop:60
   },
 });

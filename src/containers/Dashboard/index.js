@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ListAlbums from '../../components/ListAlbums';
 import Loading from '../../components/Loading';
 import {fetchAsyncAction} from '../../redux/actions';
@@ -26,7 +26,6 @@ const Dashboard = () => {
   });
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log('k');
     let body_api = {
       endpoint: 'music',
       callback: (error, result) => callBackFetch(error, result),
@@ -34,15 +33,14 @@ const Dashboard = () => {
     dispatch(fetchAsyncAction(body_api));
   }, []);
   function callBackFetch(error, result) {
-    console.log('k2');
     if (result) {
-      // console.log('result', result);
       setState({
         ...state,
         music: result,
       });
     }
   }
+  const playing = useSelector((state) => state.playing);
   const renderItem2 = ({item, index}) => {
     return (
       <TouchableOpacity>
@@ -87,14 +85,14 @@ const Dashboard = () => {
           />
         ) : null}
       </View>
-      {isplaying ? (
+      {playing.isPlaying && (
         <Playmusic
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-          song={song}
+          song={playing.item}
           setSong={setSong}
         />
-      ) : null}
+      )}
     </View>
   );
 };

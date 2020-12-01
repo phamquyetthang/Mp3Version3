@@ -9,7 +9,6 @@ const Library = () => {
         'https://fakeserver-musicaap.herokuapp.com/user',
       );
       const jsonData = await respone.json();
-      //  console.log(jsonData.mymusic)
       setMylibrary(jsonData.mymusic);
     }
     getdata();

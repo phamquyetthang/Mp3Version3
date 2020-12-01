@@ -10,6 +10,7 @@ const actions = createActions({
   OFF_LOADING_ACTION: null,
   FETCH_ASYNC_ACTION: (body_api) => body_api,
   SET_DATA_ACTION: null,
+  SET_IS_PLAYING_ACTION: null,
 });
 
 export const {
@@ -17,8 +18,5 @@ export const {
   offLoadingAction,
   fetchAsyncAction,
   setDataAction,
+  setIsPlayingAction,
 } = actions;
-// export const fetchAsyncAction = (endpoint) => ({
-//   type: FETCH_API,
-//   endpoint: endpoint,
-// });

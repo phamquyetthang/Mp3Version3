@@ -1,6 +1,8 @@
 import React from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {styles} from '../asset/styles/styled';
+import { setIsPlayingAction } from '../redux/actions';
 
 const ListAlbums = ({
   articles,
@@ -11,6 +13,7 @@ const ListAlbums = ({
   setModalVisible,
 }) => {
   // const {musicFeatured, isloading} = props;
+  const dispatch = useDispatch();
   const PlaySong = (id, name, url, singer, image, time) => {
     setSong({
       idsong: id,
@@ -28,16 +31,7 @@ const ListAlbums = ({
       return (
         <TouchableOpacity
           key={index}
-          onPress={() =>
-            PlaySong(
-              item.id,
-              item.name,
-              item.url,
-              item.singer,
-              item.image,
-              item.time,
-            )
-          }>
+          onPress={() => dispatch(setIsPlayingAction(item))}>
           <View>
             <Image
               source={{uri: item.image}}
@@ -56,7 +50,7 @@ const ListAlbums = ({
         <FlatList
           data={articles}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => String(item.id)}
           showsHorizontalScrollIndicator={false}
           horizontal={true}
         />
