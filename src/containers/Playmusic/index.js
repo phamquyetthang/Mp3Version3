@@ -10,16 +10,30 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import TrackPlayer from 'react-native-track-player';
 import Progress from './Progress';
-import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {unitH, unitW} from '../../asset/styles/size';
+import { setIsPlayingAction } from '../../redux/actions';
 export default function Playmusic({
   modalVisible,
   setModalVisible,
   song,
   setSong,
+  allMusic
 }) {
+  const [isPlay, setIsPlay] = useState(true);
+  const [nextMusic,setNextMusic]=useState({})
+  const dispatch = useDispatch();
   useEffect(() => {
+    
+      for(let i=0;i<allMusic.length;i++){
+        if(song.id===allMusic[i].id){
+            setNextMusic(allMusic[i+1])
+        }
+      }
+    
     console.log(song);
+    TrackPlayer.stop()
+    setIsPlay(true)
     TrackPlayer.setupPlayer().then(async () => {
       await TrackPlayer.add({
         id: 'trackId',
@@ -29,8 +43,9 @@ export default function Playmusic({
         artwork: song.image,
       });
     });
+    TrackPlayer.play();
   }, [song]);
-  const [isPlay, setIsPlay] = useState(false);
+
   const playmussic = () => {
     if (!isPlay) {
       TrackPlayer.play();
@@ -45,7 +60,7 @@ export default function Playmusic({
       <TouchableOpacity
         onPress={() => setModalVisible(true)}
         style={{backgroundColor: '#2A1B39'}}>
-        <Progress time={song.time} />
+        <Progress time={song.time} isPlay={0}/>
         <View
           style={{
             flexDirection: 'row',
@@ -80,7 +95,7 @@ export default function Playmusic({
               name={'md-play-skip-forward'}
               color="#fff"
               size={22}
-              onPress={() => setModalVisible(false)}
+              onPress={() => dispatch(setIsPlayingAction(nextMusic))}
             />
           </View>
         </View>
