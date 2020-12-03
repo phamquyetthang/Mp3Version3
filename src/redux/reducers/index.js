@@ -1,7 +1,9 @@
 import {handleActions} from 'redux-actions';
+import {darkTheme} from '../../asset/styles/themes';
 import {
   offLoadingAction,
   onLoadingAction,
+  setDarkModeAction,
   setDataAction,
   setIsPlayingAction,
 } from '../actions';
@@ -12,6 +14,7 @@ const initialState = {
     isPlaying: false,
     item: {},
   },
+  theme: darkTheme,
 };
 export default handleActions(
   {
@@ -28,6 +31,12 @@ export default handleActions(
         item: payload,
       },
     }),
+    [setDarkModeAction.toString()]: (state, {payload}) => {
+      return {
+        ...state,
+        theme: payload,
+      };
+    },
   },
   initialState,
 );

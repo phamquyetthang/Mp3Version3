@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export const stylescreen = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#220c38',
+    backgroundColor: '#151621',
     color: '#fff',
   },
   DashboardHeader: {

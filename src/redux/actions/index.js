@@ -11,6 +11,7 @@ const actions = createActions({
   FETCH_ASYNC_ACTION: (body_api) => body_api,
   SET_DATA_ACTION: null,
   SET_IS_PLAYING_ACTION: null,
+  SET_DARK_MODE_ACTION: null,
 });
 
 export const {
@@ -19,4 +20,5 @@ export const {
   fetchAsyncAction,
   setDataAction,
   setIsPlayingAction,
+  setDarkModeAction,
 } = actions;

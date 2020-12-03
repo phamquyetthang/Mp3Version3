@@ -22,6 +22,7 @@ const TabMenu = () => {
     console.log(playing);
     // console.log("============",allMusic);
   }, [playing]);
+  const menuTheme = useSelector((state) => state.theme.tabBarOptions);
   return (
     <View style={{flex: 1}}>
       <View style={styles.playBox}>
@@ -38,13 +39,7 @@ const TabMenu = () => {
       <Tab.Navigator
         initialRouteName="Dashboard"
         tabBarPosition="bottom"
-        tabBarOptions={{
-          activeTintColor: '#3E2AD1',
-          inactiveTintColor: '#99999F',
-          showIcon: true,
-          showLabel: false,
-          style: {height: 56 * unitH, backgroundColor: '#0d021a'},
-        }}>
+        tabBarOptions={menuTheme}>
         <Tab.Screen
           name="Dashboard"
           component={Dashboard}

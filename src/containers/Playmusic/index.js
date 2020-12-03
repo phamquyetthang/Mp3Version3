@@ -103,6 +103,9 @@ export default function Playmusic({
       <Modal animationType="slide" visible={modalVisible}>
         <View
           style={{alignItems: 'center', flex: 1, backgroundColor: 'hotpink'}}>
+          <TouchableOpacity>
+            <Icon name="md-chevron-down" />
+          </TouchableOpacity>
           <View>
             <Image source={{uri: song.image}} style={styles.imagesong} />
           </View>

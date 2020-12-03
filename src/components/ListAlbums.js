@@ -2,16 +2,9 @@ import React from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {styles} from '../asset/styles/styled';
-import { setIsPlayingAction } from '../redux/actions';
+import {setIsPlayingAction} from '../redux/actions';
 
-const ListAlbums = ({
-  articles,
-  isloading,
-  Song,
-  setSong,
-  setIsplaying,
-  setModalVisible,
-}) => {
+const ListAlbums = ({articles, isloading, Song, setSong}) => {
   // const {musicFeatured, isloading} = props;
   const dispatch = useDispatch();
   const PlaySong = (id, name, url, singer, image, time) => {
@@ -23,8 +16,6 @@ const ListAlbums = ({
       imagesong: image,
       time: time,
     });
-    setIsplaying(true);
-    setModalVisible(true);
   };
   const renderItem = ({item, index}) => {
     if (index < 11) {

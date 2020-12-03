@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import styled from 'styled-components/native';
 export const stylescreen = StyleSheet.create({
   Readbookbotomplayusic: {
     backgroundColor: 'hotpink',
@@ -12,7 +11,6 @@ export const stylescreen = StyleSheet.create({
     paddingHorizontal: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
   },
   imagesongbottom: {
     height: 40,
@@ -51,11 +49,3 @@ export const stylescreen = StyleSheet.create({
     // margintop:60
   },
 });
-
-export const PlayCard = styled.TouchableOpacity`
-  height: 60px;
-  width: 100%;
-  background-color: #1b1d28;
-  position: absolute;
-  bottom: 0px;
-`;
