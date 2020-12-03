@@ -1,20 +1,27 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {unitH, unitW} from '../asset/styles/size';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {Text1, Text2, TextTheme} from '../asset/styles/themes';
 const SongItem = ({item, trend, like}) => {
   return (
     item && (
       <TouchableOpacity style={localStyles.songitem}>
-        {trend && <Text style={localStyles.order}>1</Text>}
+        {trend && <TextTheme style={localStyles.order}>1</TextTheme>}
         <Image source={{uri: item.image}} style={localStyles.img} />
         <View>
-          <Text style={localStyles.title}>{item.name}</Text>
-          <Text style={localStyles.lable}>{item.singer}</Text>
+          <Text1 style={localStyles.title}>{item.name}</Text1>
+          <Text2 style={localStyles.lable}>{item.singer}</Text2>
         </View>
         <View style={localStyles.options}>
-          {!like && <Icon name="md-heart-outline" color="#fff" size={24} />}
-          <Icon name="md-ellipsis-vertical" color="#fff" size={24} />
+          {!like && (
+            <TextTheme>
+              <Icon name="md-heart-outline" size={24} />
+            </TextTheme>
+          )}
+          <TextTheme>
+            <Icon name="md-ellipsis-vertical" size={24} />
+          </TextTheme>
         </View>
       </TouchableOpacity>
     )
@@ -29,7 +36,6 @@ const localStyles = StyleSheet.create({
   },
   order: {
     fontSize: 24 * unitH,
-    color: '#fff',
     marginLeft: 8 * unitW,
     textDecorationLine: 'underline',
   },
@@ -40,13 +46,10 @@ const localStyles = StyleSheet.create({
     marginLeft: 8 * unitW,
   },
   title: {
-    color: '#fff',
-    fontSize: 16 * unitH,
-    fontWeight: 'bold',
     marginBottom: 6 * unitH,
     marginLeft: 6 * unitW,
   },
-  lable: {color: '#ddd', marginLeft: 6 * unitW},
+  lable: {marginLeft: 6 * unitW},
   options: {
     flexDirection: 'row',
     position: 'absolute',

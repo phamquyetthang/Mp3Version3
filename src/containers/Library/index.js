@@ -1,21 +1,36 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import React from 'react';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {unitH} from '../../asset/styles/size';
+import Local from './Local';
+import Stream from './Stream';
+import {View} from 'react-native';
+import { styles } from './styles';
+
+const Tab = createMaterialTopTabNavigator();
 
 const Library = () => {
-  const [mylibrary, setMylibrary] = useState([]);
-  useEffect(() => {
-    async function getdata() {
-      const respone = await fetch(
-        'https://fakeserver-musicaap.herokuapp.com/user',
-      );
-      const jsonData = await respone.json();
-      setMylibrary(jsonData.mymusic);
-    }
-    getdata();
-  }, []);
   return (
-    <View>
-      <Text>2</Text>
+    <View style={styles.container}>
+      <Tab.Navigator
+        initialRouteName="Stream"
+        tabBarOptions={{
+          activeTintColor: '#3E2AD1',
+          inactiveTintColor: '#99999F',
+          showIcon: false,
+          showLabel: true,
+          style: {height: 56 * unitH, backgroundColor: '#231a37'},
+        }}>
+        <Tab.Screen
+          name="Stream"
+          component={Stream}
+          options={{title: 'Trực tuyến'}}
+        />
+        <Tab.Screen
+          name="Local"
+          component={Local}
+          options={{title: 'Thiết bị'}}
+        />
+      </Tab.Navigator>
     </View>
   );
 };

@@ -10,7 +10,6 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import TrackPlayer from 'react-native-track-player';
 import Progress from './Progress';
-import {useSelector} from 'react-redux';
 import {unitH, unitW} from '../../asset/styles/size';
 export default function Playmusic({
   modalVisible,
@@ -88,6 +87,9 @@ export default function Playmusic({
       <Modal animationType="slide" visible={modalVisible}>
         <View
           style={{alignItems: 'center', flex: 1, backgroundColor: 'hotpink'}}>
+          <TouchableOpacity>
+            <Icon name="md-chevron-down" />
+          </TouchableOpacity>
           <View>
             <Image source={{uri: song.image}} style={styles.imagesong} />
           </View>

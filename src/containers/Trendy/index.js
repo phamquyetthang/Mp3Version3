@@ -10,6 +10,8 @@ import {
 import {styles} from './styles';
 import * as shape from 'd3-shape';
 import {LineChart, XAxis} from 'react-native-svg-charts';
+import { Container } from '../../asset/styles/themes';
+import { useSelector } from 'react-redux';
 
 const Trendy = () => {
   const [state, setState] = useState({
@@ -40,8 +42,9 @@ const Trendy = () => {
       },
     },
   ];
+  const theme = useSelector((state) => state.theme);
   return (
-    <ScrollView style={styles.container}>
+    <Container theme={theme}>
       <View style={{padding: 4}}>
         <View style={{height: 200}}>
           <LineChart
@@ -116,7 +119,7 @@ const Trendy = () => {
       </View>
       {/* {isloading?  (<ListAlbums Music={newreleases} isloading={isloading}/>): null} */}
       {/* <ListAlbums2 Music={newreleases} /> */}
-    </ScrollView>
+    </Container>
   );
 };
 const data3 = [
