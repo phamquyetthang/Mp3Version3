@@ -21,12 +21,14 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-const Progress = (time) => {
+
+export default function Progress(time) {
   let animation = useRef(new Animated.Value(0));
   const [progress, setProgress] = useState(0);
   useInterval(() => {
     if (progress < time.time) {
       setProgress(progress + 1);
+      // console.log(isplay)
     }
   }, 1000);
 
@@ -50,9 +52,13 @@ const Progress = (time) => {
       />
     </View>
   );
-};
+}
 
-export default Progress;
+
+  
+
+
+
 
 const styles = StyleSheet.create({
   progressBar: {

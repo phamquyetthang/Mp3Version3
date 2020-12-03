@@ -17,8 +17,10 @@ const Tab = createMaterialTopTabNavigator();
 const TabMenu = () => {
   const playing = useSelector((state) => state.playing);
   const [modalVisible, setModalVisible] = useState(false);
+  const allMusic = useSelector((state) => state.listMusic);
   useEffect(() => {
     console.log(playing);
+    // console.log("============",allMusic);
   }, [playing]);
   const menuTheme = useSelector((state) => state.theme.tabBarOptions);
   return (
@@ -28,6 +30,7 @@ const TabMenu = () => {
           <Playmusic
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
+            allMusic={allMusic}
             song={playing.item}
             setSong={() => null}
           />
