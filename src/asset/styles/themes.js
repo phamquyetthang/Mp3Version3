@@ -62,3 +62,9 @@ export const TextTheme = styled.Text`
 export const PlayingBar = styled.TouchableOpacity`
   background-color: ${(props) => props.theme.BACKGROUND_PLAYING_BAR};
 `;
+export const ContainerModal = styled.View`
+  flex: 0.35;
+  background-color: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
+  border-top-left-radius: ${`${8 * unitH}px`};
+  border-top-right-radius: ${`${8 * unitH}px`};
+`;

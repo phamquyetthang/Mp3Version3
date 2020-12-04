@@ -4,6 +4,8 @@ import {FlatList} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useDispatch} from 'react-redux';
 import {Container, Text1, TextTheme} from '../../asset/styles/themes';
+import AnalogPopup from '../../components/AnalogPopup';
+import InfoSongPopup from '../../components/InfoSongPopup';
 import ListAlbums from '../../components/ListAlbums';
 import Loading from '../../components/Loading';
 import SongItem from '../../components/SongItem';
@@ -14,6 +16,10 @@ const Dashboard = () => {
   const [state, setState] = useState({
     isLoading: true,
     music: [],
+    songInfo: {},
+    showInfo: false,
+    isShowAlert: false,
+    alert: '',
   });
   const [song, setSong] = useState({
     idsong: 0,
@@ -39,6 +45,34 @@ const Dashboard = () => {
       });
     }
   }
+  function openInfo(item) {
+    setState({
+      ...state,
+      showInfo: true,
+      songInfo: item,
+    });
+  }
+  function hiddenInfo() {
+    setState({
+      ...state,
+      showInfo: false,
+      songInfo: {},
+    });
+  }
+  function hiddenAlert() {
+    setState({
+      ...state,
+      isShowAlert: false,
+      alert: '',
+    });
+  }
+  function handleLike() {
+    setState({
+      ...state,
+      isShowAlert: true,
+      alert: 'Đã thêm vào danh sách yêu thích',
+    });
+  }
   return state.music.length === 0 ? (
     <Loading />
   ) : (
@@ -60,12 +94,30 @@ const Dashboard = () => {
         {state.music.length !== 0 ? (
           <FlatList
             data={state.music}
-            renderItem={({item}) => <SongItem item={item} />}
+            renderItem={({item}) => (
+              <SongItem
+                item={item}
+                openInfo={() => openInfo(item)}
+                handleLike={handleLike}
+              />
+            )}
             keyExtractor={(item) => item.url}
             showsVerticalScrollIndicator={false}
           />
         ) : null}
       </View>
+      {state.songInfo && (
+        <InfoSongPopup
+          showInfo={state.showInfo}
+          item={state.songInfo}
+          hiddenInfo={hiddenInfo}
+        />
+      )}
+      <AnalogPopup
+        isShow={state.isShowAlert}
+        item={state.alert}
+        hidden={hiddenAlert}
+      />
     </Container>
   );
 };
