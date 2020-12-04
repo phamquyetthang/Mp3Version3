@@ -1,7 +1,12 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {Container, darkTheme, lightTheme, TextTheme} from '../../asset/styles/themes';
+import {
+  Container,
+  darkTheme,
+  lightTheme,
+  TextTheme,
+} from '../../asset/styles/themes';
 import {setDarkModeAction} from '../../redux/actions';
 
 const User = () => {

@@ -21,7 +21,6 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-
 export default function Progress(time) {
   let animation = useRef(new Animated.Value(0));
   const [progress, setProgress] = useState(0);
@@ -53,12 +52,6 @@ export default function Progress(time) {
     </View>
   );
 }
-
-
-  
-
-
-
 
 const styles = StyleSheet.create({
   progressBar: {
