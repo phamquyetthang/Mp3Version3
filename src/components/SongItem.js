@@ -17,13 +17,17 @@ const SongItem = ({item, trend, like, openInfo, handleLike = null}) => {
         </TouchableOpacity>
         <View style={localStyles.options}>
           {!like && (
-            <TextTheme>
-              <Icon name="md-heart-outline" size={24} onPress={handleLike} />
-            </TextTheme>
+            <TouchableOpacity onPress={handleLike} style={localStyles.p4}>
+              <TextTheme>
+                <Icon name="md-heart-outline" size={24} />
+              </TextTheme>
+            </TouchableOpacity>
           )}
-          <TextTheme>
-            <Icon name="md-ellipsis-vertical" size={24} onPress={openInfo} />
-          </TextTheme>
+          <TouchableOpacity onPress={openInfo} style={localStyles.p4}>
+            <TextTheme>
+              <Icon name="md-ellipsis-vertical" size={24} />
+            </TextTheme>
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -59,5 +63,6 @@ const localStyles = StyleSheet.create({
     width: 56 * unitW,
     justifyContent: 'space-between',
   },
+  p4: {padding: 4},
 });
 export default SongItem;

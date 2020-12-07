@@ -8,10 +8,7 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
   return (
     <Modal
       isVisible={showInfo}
-      style={{
-        justifyContent: 'flex-end',
-        margin: 0,
-      }}
+      style={localStyles.modal}
       swipeDirection={['up', 'left', 'right', 'down']}
       onSwipeComplete={hiddenInfo}
       onBackdropPress={hiddenInfo}>
@@ -42,14 +39,11 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
 
 const OptionItem = ({icon, text}) => {
   return (
-    <View
-      style={{margin: 10 * unitH, flexDirection: 'row', alignItems: 'center'}}>
+    <View style={localStyles.optionItem}>
       <TextTheme>
         <Icon name={icon} size={22} />
       </TextTheme>
-      <TextTheme style={{fontSize: 14 * unitH, marginLeft: 12 * unitW}}>
-        {text}
-      </TextTheme>
+      <TextTheme style={localStyles.optionText}>{text}</TextTheme>
     </View>
   );
 };
@@ -77,4 +71,10 @@ const localStyles = StyleSheet.create({
     marginLeft: 16 * unitW,
   },
   lable: {marginLeft: 16 * unitW},
+  modal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+  optionItem: {margin: 10 * unitH, flexDirection: 'row', alignItems: 'center'},
+  optionText: {fontSize: 14 * unitH, marginLeft: 12 * unitW},
 });

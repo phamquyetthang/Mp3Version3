@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {styles} from '../asset/styles/styled';
+import { Text1, TextTheme } from '../asset/styles/themes';
 import {setIsPlayingAction} from '../redux/actions';
 
 const ListAlbums = ({articles, isloading, Song, setSong}) => {
@@ -28,8 +29,8 @@ const ListAlbums = ({articles, isloading, Song, setSong}) => {
               source={{uri: item.image}}
               style={styles.DashboardImageFeatured}
             />
-            <Text style={{fontWeight: 'bold'}}>{item.name}</Text>
-            <Text style={{color: 'gray'}}>{item.singer}</Text>
+            <Text1>{item.name}</Text1>
+            <TextTheme>{item.singer}</TextTheme>
           </View>
         </TouchableOpacity>
       );

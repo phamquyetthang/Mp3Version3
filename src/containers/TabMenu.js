@@ -7,11 +7,11 @@ import Library from './Library';
 import Download from './Download';
 import Trendy from './Trendy';
 import User from './User';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Playmusic from './Playmusic';
 import {useSelector} from 'react-redux';
-import {unitH} from '../asset/styles/size';
 import {styles} from '../asset/styles/styled';
+import {ContainerView} from '../asset/styles/themes';
 
 const Tab = createMaterialTopTabNavigator();
 const TabMenu = () => {
@@ -24,7 +24,7 @@ const TabMenu = () => {
   }, [playing]);
   const menuTheme = useSelector((state) => state.theme.tabBarOptions);
   return (
-    <View style={{flex: 1}}>
+    <ContainerView>
       <View style={styles.playBox}>
         {playing.isPlaying && (
           <Playmusic
@@ -45,7 +45,7 @@ const TabMenu = () => {
           component={Dashboard}
           options={{
             tabBarIcon: ({color}) => (
-              <Icon name="md-planet" style={{fontSize: 28, color, width: 30}} />
+              <Icon name="md-planet" style={iconStyle.icon} color={color} />
             ),
           }}
         />
@@ -56,7 +56,8 @@ const TabMenu = () => {
             tabBarIcon: ({color}) => (
               <MaterialIcons
                 name="library-music"
-                style={{fontSize: 28, color, width: 30}}
+                style={iconStyle.icon}
+                color={color}
               />
             ),
           }}
@@ -68,7 +69,8 @@ const TabMenu = () => {
             tabBarIcon: ({color}) => (
               <Icon
                 name="md-cloud-download"
-                style={{fontSize: 28, color, width: 30}}
+                style={iconStyle.icon}
+                color={color}
               />
             ),
           }}
@@ -80,7 +82,8 @@ const TabMenu = () => {
             tabBarIcon: ({color}) => (
               <Icon
                 name="md-trending-up"
-                style={{fontSize: 28, color, width: 30}}
+                style={iconStyle.icon}
+                color={color}
               />
             ),
           }}
@@ -90,13 +93,16 @@ const TabMenu = () => {
           component={User}
           options={{
             tabBarIcon: ({color}) => (
-              <Icon name="person" style={{fontSize: 26, color, width: 30}} />
+              <Icon name="person" style={iconStyle.icon} color={color} />
             ),
           }}
         />
       </Tab.Navigator>
-    </View>
+    </ContainerView>
   );
 };
 
 export default TabMenu;
+const iconStyle = StyleSheet.create({
+  icon: {fontSize: 28, width: 30},
+});

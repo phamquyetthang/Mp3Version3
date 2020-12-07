@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import * as shape from 'd3-shape';
 import {LineChart, XAxis} from 'react-native-svg-charts';
-import { Container } from '../../asset/styles/themes';
-import { useSelector } from 'react-redux';
+import {Container} from '../../asset/styles/themes';
+import {useSelector} from 'react-redux';
 
 const Trendy = () => {
   const [state, setState] = useState({
