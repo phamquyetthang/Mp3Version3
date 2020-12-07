@@ -82,25 +82,13 @@ export default function Playmusic({
     <View>
       <PlayingBar onPress={() => setModalVisible(true)}>
         <Progress time={song.time} isPlay={0} />
-        <View
-          style={{
-            flexDirection: 'row',
-            padding: 4 * unitW,
-          }}>
+        <View style={styles.playingbar}>
           <Image source={{uri: song.image}} style={styles.imagesongbottom} />
           <View>
-            <TextTheme style={{fontSize: 18, fontWeight: 'bold'}}>
-              {song.name}
-            </TextTheme>
+            <Text1>{song.name}</Text1>
             <TextTheme>{song.singer}</TextTheme>
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignSelf: 'center',
-              right: 8 * unitW,
-              position: 'absolute',
-            }}>
+          <View style={styles.control}>
             <TextTheme>
               <Icon
                 name={'md-heart-outline'}
@@ -202,6 +190,10 @@ const styles = StyleSheet.create({
     marginTop: 60 * unitH,
     borderRadius: 150 * unitH,
   },
+  playingbar: {
+    flexDirection: 'row',
+    padding: 4 * unitW,
+  },
   modalsong: {
     width: '100%',
     height: '100%',
@@ -249,5 +241,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     alignSelf: 'flex-start',
     marginHorizontal: 24 * unitW,
+  },
+  control: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    right: 8 * unitW,
+    position: 'absolute',
   },
 });

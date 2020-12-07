@@ -1,8 +1,10 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch} from 'react-redux';
+import {unitH} from '../../asset/styles/size';
 import {Container, Text1, TextTheme} from '../../asset/styles/themes';
 import AnalogPopup from '../../components/AnalogPopup';
 import InfoSongPopup from '../../components/InfoSongPopup';
@@ -73,14 +75,20 @@ const Dashboard = () => {
       alert: 'Đã thêm vào danh sách yêu thích',
     });
   }
+  const navigation = useNavigation();
+  const openSearch = () => {
+    navigation.navigate('SearchForm');
+  };
   return state.music.length === 0 ? (
     <Loading />
   ) : (
     <Container>
       <View style={stylescreen.DashboardHeader}>
-        <TextTheme>
-          <Icon name="align-left" size={28} />
-        </TextTheme>
+        <TouchableOpacity onPress={openSearch}>
+          <TextTheme>
+            <Icon name="md-search-outline" size={24 * unitH} />
+          </TextTheme>
+        </TouchableOpacity>
       </View>
       <Text1 style={stylescreen.DashboardTextFeatured}>Featured Tracks</Text1>
       <ListAlbums
