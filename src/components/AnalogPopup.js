@@ -27,8 +27,6 @@ const AnalogPopup = ({isShow, item, hidden}) => {
     </Modal>
   );
 };
-
-export default AnalogPopup;
 const localStyles = StyleSheet.create({
   modal: {justifyContent: 'flex-start'},
   modalContain: {
@@ -39,3 +37,5 @@ const localStyles = StyleSheet.create({
   },
   modalLable: {textAlign: 'center', fontSize: 16},
 });
+
+export default AnalogPopup;

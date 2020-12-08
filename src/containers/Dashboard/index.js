@@ -1,15 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch} from 'react-redux';
-import {unitH} from '../../asset/styles/size';
-import {Container, Text1, TextTheme} from '../../asset/styles/themes';
+import {Container, Text1} from '../../asset/styles/themes';
 import AnalogPopup from '../../components/AnalogPopup';
+import IconCustom from '../../components/IconCustom';
 import InfoSongPopup from '../../components/InfoSongPopup';
 import ListAlbums from '../../components/ListAlbums';
 import Loading from '../../components/Loading';
+import SettingPopup from '../../components/SettingPopup';
 import SongItem from '../../components/SongItem';
 import {fetchAsyncAction} from '../../redux/actions';
 import {stylescreen} from './styled';
@@ -22,6 +22,7 @@ const Dashboard = () => {
     showInfo: false,
     isShowAlert: false,
     alert: '',
+    openSetting: false,
   });
   const [song, setSong] = useState({
     idsong: 0,
@@ -79,16 +80,22 @@ const Dashboard = () => {
   const openSearch = () => {
     navigation.navigate('SearchForm');
   };
+  const openSetting = () => {
+    setState({...state, openSetting: true});
+  };
+  const hiddenSetting = () => {
+    setState({...state, openSetting: false});
+  };
   return state.music.length === 0 ? (
     <Loading />
   ) : (
     <Container>
       <View style={stylescreen.DashboardHeader}>
-        <TouchableOpacity onPress={openSearch}>
-          <TextTheme>
-            <Icon name="md-search-outline" size={24 * unitH} />
-          </TextTheme>
-        </TouchableOpacity>
+        <IconCustom name="md-notifications-outline" handlePress={openSearch} />
+        <View style={stylescreen.searchSet}>
+          <IconCustom name="md-search-outline" handlePress={openSearch} />
+          <IconCustom name="md-settings-outline" handlePress={openSetting} />
+        </View>
       </View>
       <Text1 style={stylescreen.DashboardTextFeatured}>Featured Tracks</Text1>
       <ListAlbums
@@ -126,6 +133,7 @@ const Dashboard = () => {
         item={state.alert}
         hidden={hiddenAlert}
       />
+      <SettingPopup isOpen={state.openSetting} hidden={hiddenSetting} />
     </Container>
   );
 };
