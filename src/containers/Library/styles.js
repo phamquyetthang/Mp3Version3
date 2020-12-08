@@ -27,5 +27,24 @@ export const styles = StyleSheet.create({
     fontWeight:"bold",
     marginLeft:8,
     fontSize:16
+  },
+  inputPlaylistName:{
+    width:"100%",
+    borderBottomWidth:1,
+    borderBottomColor:"red",
+    opacity: 0.8,
+    color:"#fff",
+    fontSize:20
+    },
+  modalInputPlaylist:{
+    paddingHorizontal:16
+  },
+  buttonInputPlaylist:{
+    width:"100%",
+    height:52,
+    marginTop:16,
+    borderRadius:26,
+    alignItems:"center",
+    justifyContent:"center"
   }
 });

@@ -69,7 +69,7 @@ export const ContainerModal = styled.View`
   border-top-right-radius: ${`${8 * unitH}px`};
 `;
 export const ModalPlaylist = styled.View`
-  flex: 0.5;
+  flex: 1;
   background-color: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
 `;
 export const ButtonTheme = styled.TouchableOpacity`
