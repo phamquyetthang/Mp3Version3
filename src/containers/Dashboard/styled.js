@@ -14,6 +14,7 @@ export const stylescreen = StyleSheet.create({
   DashboardTextFeatured: {
     fontWeight: 'bold',
     paddingHorizontal: 20,
+    marginTop:16
   },
   DashboardFeatured: {
     paddingLeft: 20,
@@ -30,6 +31,7 @@ export const stylescreen = StyleSheet.create({
   },
   DashboardToptracks: {
     // width: '100%',
+    marginTop:16,
     flex: 0.9,
     // backgroundColor:"gray",
     // marginLeft: 20,

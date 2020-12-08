@@ -16,3 +16,7 @@ src
 - Hoặc `sudo chmod 777 gradlew`
   
 ( lỗi do không có quyền chuy cập file gradlew )
+
+**Chạy thử trên Android** 
+- Vào folder : `/product_build/`
+- Tải file apk
