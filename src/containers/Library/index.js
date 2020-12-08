@@ -23,7 +23,7 @@ const Library = () => {
         <Tab.Screen
           name="Stream"
           component={Stream}
-          options={{title: 'Trực tuyến'}}
+          options={{title: 'Playlist'}}
         />
         <Tab.Screen
           name="Local"

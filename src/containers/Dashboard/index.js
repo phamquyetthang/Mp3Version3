@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch} from 'react-redux';
@@ -90,7 +90,14 @@ const Dashboard = () => {
           </TextTheme>
         </TouchableOpacity>
       </View>
-      <Text1 style={stylescreen.DashboardTextFeatured}>Featured Tracks</Text1>
+      <Text1 style={[stylescreen.DashboardTextFeatured,{marginTop:0}]}>Featured Tracks</Text1>
+      <ListAlbums
+        articles={state.music}
+        isloading={true}
+        Song={song}
+        setSong={setSong}
+      />
+      <Text1 style={stylescreen.DashboardTextFeatured}>Bolero music</Text1>
       <ListAlbums
         articles={state.music}
         isloading={true}
