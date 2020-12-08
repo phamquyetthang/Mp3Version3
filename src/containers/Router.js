@@ -5,6 +5,8 @@ import TabMenu from './TabMenu';
 import {ThemeProvider} from 'styled-components/native';
 import {useSelector} from 'react-redux';
 import SearchForm from '../components/SearchForm';
+import Inplaylist from '../components/Inplaylist';
+import Stream from './Library/Stream';
 
 const Stack = createStackNavigator();
 export default function Router() {
@@ -22,6 +24,17 @@ export default function Router() {
             component={SearchForm}
             options={{animationTypeForReplace: 'pop'}}
           />
+          <Stack.Screen
+            name="Stream"
+            component={Stream}
+            options={{animationTypeForReplace: 'pop'}}
+          />
+          <Stack.Screen
+            name="Inplaylist"
+            component={Inplaylist}
+            options={{animationTypeForReplace: 'pop'}}
+          />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
