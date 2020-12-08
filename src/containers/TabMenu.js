@@ -62,7 +62,7 @@ const TabMenu = () => {
             ),
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Download"
           component={Download}
           options={{
@@ -74,7 +74,7 @@ const TabMenu = () => {
               />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Trendy"
           component={Trendy}
@@ -88,7 +88,7 @@ const TabMenu = () => {
             ),
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="User"
           component={User}
           options={{
@@ -96,7 +96,7 @@ const TabMenu = () => {
               <Icon name="person" style={iconStyle.icon} color={color} />
             ),
           }}
-        />
+        /> */}
       </Tab.Navigator>
     </ContainerView>
   );

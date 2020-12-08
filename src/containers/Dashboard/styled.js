@@ -8,6 +8,8 @@ export const stylescreen = StyleSheet.create({
   },
   DashboardHeader: {
     padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   DashboardTextFeatured: {
     fontWeight: 'bold',
@@ -40,5 +42,10 @@ export const stylescreen = StyleSheet.create({
     marginTop: 8,
     borderRadius: 4,
     marginRight: 8,
+  },
+  searchSet: {
+    flexDirection: 'row',
+    width: 60,
+    justifyContent: 'space-between',
   },
 });
