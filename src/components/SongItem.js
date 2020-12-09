@@ -3,12 +3,19 @@ import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {unitH, unitW} from '../asset/styles/size';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Text1, Text2, TextTheme} from '../asset/styles/themes';
-const SongItem = ({item, trend, like, openInfo, handleLike = null}) => {
+const SongItem = ({
+  item,
+  trend,
+  like,
+  openInfo,
+  handleLike = null,
+  handlePress = null,
+}) => {
   return (
     item && (
       <View style={localStyles.songitem}>
-        <TouchableOpacity style={localStyles.songitem}>
-          {trend && <TextTheme style={localStyles.order}>1</TextTheme>}
+        <TouchableOpacity style={localStyles.songitem} onPress={handlePress}>
+          {trend && <TextTheme style={localStyles.order}>{item.id}</TextTheme>}
           <Image source={{uri: item.image}} style={localStyles.img} />
           <View>
             <Text1 style={localStyles.title}>{item.name}</Text1>
@@ -43,7 +50,7 @@ const localStyles = StyleSheet.create({
   order: {
     fontSize: 24 * unitH,
     marginLeft: 8 * unitW,
-    textDecorationLine: 'underline',
+    // textDecorationLine: 'underline',
   },
   img: {
     width: 64 * unitW,
