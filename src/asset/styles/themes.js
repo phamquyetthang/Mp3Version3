@@ -89,3 +89,6 @@ export const SettingModal = styled.View`
   border-radius: 12px;
   border-top-right-radius: 0px;
 `;
+export const BackgroudTheme = styled.View`
+  background-color: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
+`;

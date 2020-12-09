@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import * as shape from 'd3-shape';
 import {LineChart, XAxis} from 'react-native-svg-charts';
 import {Container} from '../../asset/styles/themes';
 import {useSelector} from 'react-redux';
+import SongItem from '../../components/SongItem';
+import {useIsFocused} from '@react-navigation/native';
 
 const Trendy = () => {
   const [state, setState] = useState({
@@ -36,10 +38,15 @@ const Trendy = () => {
     },
   ];
   const theme = useSelector((state) => state.theme);
+  const music = useSelector((state) => state.listMusic);
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    console.log(isFocused);
+  }, [isFocused]);
   return (
     <Container theme={theme}>
       <View style={{padding: 4}}>
-        <View style={{height: 200}}>
+        <View style={{height: 200, paddingHorizontal: 4}}>
           <LineChart
             style={{height: 200}}
             data={data}
@@ -67,7 +74,14 @@ const Trendy = () => {
           contentInset={{left: 10, right: 25}}
         />
       </View>
-
+      <FlatList
+        data={music}
+        renderItem={({item}) => (
+          <SongItem item={item} trend={true} openInfo={() => null} />
+        )}
+        keyExtractor={(item) => item.url}
+        showsVerticalScrollIndicator={false}
+      />
       <View style={{marginTop: 8}}>
         <Text style={{fontWeight: 'bold', fontSize: 20}}>Top 50</Text>
       </View>
