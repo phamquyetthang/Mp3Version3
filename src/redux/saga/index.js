@@ -28,9 +28,7 @@ function* fetchAsyncWatch() {
         }
       }
     } catch (error) {
-      // else if (payload?.callback) payload.callback("Server Error", {});
-      // yield put(offLoadingAction());
-      console.log('k6', error);
+      throw error
     } finally {
       // else if (payload?.callback) payload.callback("Server Error", {});
       yield put(offLoadingAction());

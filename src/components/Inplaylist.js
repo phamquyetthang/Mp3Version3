@@ -6,7 +6,6 @@ import SongItem from './SongItem';
 export default function Inplaylist() {
   const router = useRoute();
   const song = router.params.song;
-  console.log(song);
 
   return (
     <ContainerView>

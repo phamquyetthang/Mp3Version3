@@ -21,37 +21,75 @@ import {
   Text2,
   TextTheme,
 } from '../../asset/styles/themes';
+import {useTrackPlayerProgress} from 'react-native-track-player';
+import IconCustom from '../../components/IconCustom';
 export default function Playmusic({
   modalVisible,
   setModalVisible,
   song,
-  setSong,
+  allMusicstart,
   allMusic,
 }) {
-  const [isPlay, setIsPlay] = useState(true);
+  // console.log(allMusic)
+  const [isPlay, setIsPlay] = useState(false);
   const [nextMusic, setNextMusic] = useState({});
-  const dispatch = useDispatch();
-  useEffect(() => {
-    for (let i = 0; i < allMusic.length; i++) {
-      if (song.id === allMusic[i].id) {
-        setNextMusic(allMusic[i + 1]);
-      }
-    }
+ 
 
-    console.log(song);
-    TrackPlayer.stop();
-    setIsPlay(true);
-    TrackPlayer.setupPlayer().then(async () => {
-      await TrackPlayer.add({
-        id: 'trackId',
-        url: song.url,
-        title: 'Track Title',
-        artist: 'Track Artist',
-        artwork: song.image,
-      });
+  const dispatch = useDispatch();
+  const {position, bufferedPosition, duration} = useTrackPlayerProgress();
+
+  const trackPlayerInit = async () => {
+    await TrackPlayer.setupPlayer({
+      maxCacheSize: 1048576,
     });
-    TrackPlayer.play();
+    return true;
+  };
+
+  useEffect(() => {
+    trackPlayerInit();
+    TrackPlayer.updateOptions({
+      stopWithApp: true,
+      // alwaysPauseOnInterruption: true,
+      capabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_SEEK_TO,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        TrackPlayer.CAPABILITY_SKIP,
+      ],
+      compactCapabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_SEEK_TO,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        TrackPlayer.CAPABILITY_SKIP,
+      ],
+      notificationCapabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_SEEK_TO,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+        TrackPlayer.CAPABILITY_SKIP,
+      ],
+    });
+    TrackPlayer.setupPlayer().then(async () => {
+      await TrackPlayer.reset();
+
+      await TrackPlayer.add(allMusic);
+      await TrackPlayer.add(String(song.id));
+      await TrackPlayer.play();
+    });
+
+    console.log('next');
   }, [song]);
+
+  // const onPressFunction=()=>{
+  //   TrackPlayer.add(trach)
+  //   TrackPlayer.play();
+  // }
 
   const playmussic = () => {
     if (!isPlay) {
@@ -62,6 +100,11 @@ export default function Playmusic({
       setIsPlay(false);
     }
   };
+  const nextmusiccc = ()=>{
+    TrackPlayer.skipToNext();
+
+    dispatch(setIsPlayingAction(allMusicstart[song.id+1]))
+  }
   const spinValue = new Animated.Value(0);
   // First set up animation
   Animated.loop(
@@ -78,6 +121,9 @@ export default function Playmusic({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
   });
+  useEffect(() => {
+    console.log('next2');
+  }, []);
   return (
     <View>
       <PlayingBar onPress={() => setModalVisible(true)}>
@@ -97,7 +143,7 @@ export default function Playmusic({
               />
             </TextTheme>
             <TextTheme style={{marginHorizontal: 20 * unitW}}>
-              <Icon
+              <IconCustom
                 name={isPlay ? 'md-pause' : 'md-play'}
                 size={22}
                 onPress={playmussic}
@@ -107,7 +153,7 @@ export default function Playmusic({
               <Icon
                 name={'md-play-skip-forward'}
                 size={22}
-                onPress={() => dispatch(setIsPlayingAction(nextMusic))}
+                onPress={nextmusiccc}
               />
             </TextTheme>
           </View>
@@ -164,7 +210,7 @@ export default function Playmusic({
               <Icon
                 name={'md-play-skip-forward'}
                 size={28}
-                onPress={() => setModalVisible(false)}
+                onPress={nextmusiccc}
               />
             </TextTheme>
             <TextTheme>
