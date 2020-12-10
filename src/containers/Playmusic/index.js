@@ -32,7 +32,7 @@ export default function Playmusic({
   allMusic,
 }) {
   // console.log(allMusic)
-  const [isPlay, setIsPlay] = useState(null);
+  const [isPlay, setIsPlay] = useState(false);
   // const [nextMusic, setNextMusic] = useState({});
   
 
