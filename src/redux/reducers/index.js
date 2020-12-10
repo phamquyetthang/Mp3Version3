@@ -27,10 +27,10 @@ export default handleActions(
       listPlay: payload.map(
         (i) => ({
           id: String(i.id),
-       url: i.url,
-       title: i.name,
-       artist: i.singer,
-       artwork:i.image,
+          url: i.url,
+          title: i.name,
+          artist: i.singer,
+          artwork:i.image,
         })
       )
     }),

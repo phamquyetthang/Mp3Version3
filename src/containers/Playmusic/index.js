@@ -23,6 +23,7 @@ import {
 } from '../../asset/styles/themes';
 import {useTrackPlayerProgress} from 'react-native-track-player';
 import IconCustom from '../../components/IconCustom';
+
 export default function Playmusic({
   modalVisible,
   setModalVisible,
@@ -31,13 +32,12 @@ export default function Playmusic({
   allMusic,
 }) {
   // console.log(allMusic)
-  const [isPlay, setIsPlay] = useState(false);
-  const [nextMusic, setNextMusic] = useState({});
- 
+  const [isPlay, setIsPlay] = useState(null);
+  // const [nextMusic, setNextMusic] = useState({});
+  
 
   const dispatch = useDispatch();
-  const {position, bufferedPosition, duration} = useTrackPlayerProgress();
-
+ 
   const trackPlayerInit = async () => {
     await TrackPlayer.setupPlayer({
       maxCacheSize: 1048576,
@@ -75,17 +75,30 @@ export default function Playmusic({
         TrackPlayer.CAPABILITY_SKIP,
       ],
     });
+    
     TrackPlayer.setupPlayer().then(async () => {
       await TrackPlayer.reset();
-
+      // await TrackPlayer.stop();
       await TrackPlayer.add(allMusic);
-      await TrackPlayer.add(String(song.id));
+      await TrackPlayer.skip(String(song.id));
       await TrackPlayer.play();
     });
 
-    console.log('next');
-  }, [song]);
+   
 
+    console.log('next');
+  }, []);
+  useEffect(() => {
+    TrackPlayer.skip(String(song.id));
+  }, [song])
+  // useEffect(() => {
+   
+      
+  //     await TrackPlayer.skip(String(song.id));
+     
+   
+  // }, [song])
+  // String(song.id)
   // const onPressFunction=()=>{
   //   TrackPlayer.add(trach)
   //   TrackPlayer.play();

@@ -21,7 +21,4 @@ module.exports = async function() {
   TrackPlayer.addEventListener('remote-previous', async () => {
     TrackPlayer.skipToPrevious();
   })
-  TrackPlayer.addEventListener('remote-skip', async () => {
-    TrackPlayer.skip();
-  })
 };
