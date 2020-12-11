@@ -1,0 +1,34 @@
+{
+  "acc": [
+    {
+      "id": 1,
+      "name": "Phạm Quyết Thắng",
+      "email": "thang@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Nguyễn Đức Huynh",
+      "email": "huynh@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 3,
+      "name": "Vũ Thị Mây",
+      "email": "may@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 4,
+      "name": "Mai Thu Hoài",
+      "email": "hoai@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 5,
+      "name": "Chu Đức Phuc",
+      "email": "phuc@gmail.com",
+      "password": "123456"
+    }
+  ]
+}

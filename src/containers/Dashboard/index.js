@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
 import {Container, Text1} from '../../asset/styles/themes';
+import AccPopup from '../../components/AccPopup';
 import AnalogPopup from '../../components/AnalogPopup';
 import IconCustom from '../../components/IconCustom';
 import InfoSongPopup from '../../components/InfoSongPopup';
@@ -23,6 +24,7 @@ const Dashboard = () => {
     isShowAlert: false,
     alert: '',
     openSetting: false,
+    openAcc: false,
   });
   const [song, setSong] = useState({
     idsong: 0,
@@ -86,12 +88,18 @@ const Dashboard = () => {
   const hiddenSetting = () => {
     setState({...state, openSetting: false});
   };
+  const openAcc = () => {
+    setState({...state, openAcc: true});
+  };
+  const hiddenAcc = () => {
+    setState({...state, openAcc: false});
+  };
   return state.music.length === 0 ? (
     <Loading />
   ) : (
     <Container>
       <View style={stylescreen.DashboardHeader}>
-        <IconCustom name="md-notifications-outline" handlePress={openSearch} />
+        <IconCustom name="md-person-outline" handlePress={openAcc} />
         <View style={stylescreen.searchSet}>
           <IconCustom name="md-search-outline" handlePress={openSearch} />
           <IconCustom name="md-settings-outline" handlePress={openSetting} />
@@ -143,6 +151,7 @@ const Dashboard = () => {
         hidden={hiddenAlert}
       />
       <SettingPopup isOpen={state.openSetting} hidden={hiddenSetting} />
+      <AccPopup isOpen={state.openAcc} hidden={hiddenAcc} />
     </Container>
   );
 };

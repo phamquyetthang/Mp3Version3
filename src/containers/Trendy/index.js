@@ -74,14 +74,16 @@ const Trendy = () => {
           contentInset={{left: 10, right: 25}}
         />
       </View>
-      <FlatList
-        data={music}
-        renderItem={({item}) => (
-          <SongItem item={item} trend={true} openInfo={() => null} />
-        )}
-        keyExtractor={(item) => item.url}
-        showsVerticalScrollIndicator={false}
-      />
+      {isFocused && (
+        <FlatList
+          data={music}
+          renderItem={({item}) => (
+            <SongItem item={item} trend={true} openInfo={() => null} />
+          )}
+          keyExtractor={(item) => item.url}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
       <View style={{marginTop: 8}}>
         <Text style={{fontWeight: 'bold', fontSize: 20}}>Top 50</Text>
       </View>
