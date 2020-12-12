@@ -1,15 +1,35 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
 import {SettingModal, TextTheme, ButtonTheme} from '../asset/styles/themes';
 
 const AccPopup = ({isOpen, hidden, handlePress = null}) => {
-  const hasAcc = AsyncStorage.getItem('@hasAcc');
+  const [userInfo, setUserInfo] = useState({
+    info: {},
+    sign: false,
+  });
+  const getLocalData = async () => {
+    let check = await AsyncStorage.getItem('@hasAcc');
+    if (check) {
+      let result = await AsyncStorage.getItem('@acc');
+      if (result) {
+        setUserInfo({info: result, sign: true});
+      }
+    } else {
+      setUserInfo({info: {}, sign: false});
+    }
+  };
+  useEffect(() => {
+    getLocalData();
+  }, []);
   const navigation = useNavigation();
   const logout = async () => {
-    await AsyncStorage.clear();
+    if (userInfo.sign) {
+      await AsyncStorage.removeItem('@hasAcc');
+    }
+    hidden();
     navigation.navigate('Login');
   };
   return (
@@ -23,16 +43,14 @@ const AccPopup = ({isOpen, hidden, handlePress = null}) => {
       backdropTransitionInTiming={200}
       onBackdropPress={hidden}>
       <SettingModal type="acc" style={localStyle.acc}>
-        {!hasAcc && <TextTheme>Tài khoản chưa đăng nhập</TextTheme>}
-        {!hasAcc ? (
-          <ButtonTheme style={localStyle.button}>
-            <TextTheme>Đăng nhập</TextTheme>
-          </ButtonTheme>
-        ) : (
-          <ButtonTheme style={localStyle.button} onPress={logout}>
-            <TextTheme>Đăng xuất</TextTheme>
-          </ButtonTheme>
-        )}
+        <TextTheme>
+          {userInfo.info
+            ? String(userInfo.info?.name)
+            : 'Tài khoản chưa đăng nhập'}
+        </TextTheme>
+        <ButtonTheme style={localStyle.button} onPress={logout}>
+          <TextTheme>{userInfo.sign ? 'Đăng xuất' : 'Đăng nhập'}</TextTheme>
+        </ButtonTheme>
       </SettingModal>
     </Modal>
   );

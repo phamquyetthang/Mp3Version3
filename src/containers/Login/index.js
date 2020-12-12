@@ -35,7 +35,7 @@ export default function Login() {
   const storeData = async (value) => {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem('@acc', jsonValue);
-    await AsyncStorage.setItem('@hasAcc', true);
+    await AsyncStorage.setItem('@hasAcc', 'true');
   };
   const getData = async () => {
     try {
@@ -55,7 +55,6 @@ export default function Login() {
   }, []);
   const navigation = useNavigation();
   async function checkLogin() {
-    // let check = "fail";
     if (user.pass === '' || user.email === '') {
       Alert.alert('Chưa nhập đầy đủ');
     } else {
@@ -109,7 +108,12 @@ export default function Login() {
             <Text> Nhớ mật khẩu</Text>
           </View>
 
-          <TouchableOpacity style={Styles.button1} onPress={() => checkLogin()}>
+          <TouchableOpacity style={Styles.button1} onPress={checkLogin}>
+            <Text style={{fontSize: 16}}>Đăng nhập</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={Styles.button1}
+            onPress={() => navigation.navigate('Main')}>
             <Text style={{fontSize: 16}}>Đăng nhập</Text>
           </TouchableOpacity>
         </View>

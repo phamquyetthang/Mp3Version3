@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
@@ -25,6 +26,10 @@ const Dashboard = () => {
     alert: '',
     openSetting: false,
     openAcc: false,
+    userInfo: {
+      info: {},
+      sign: false,
+    },
   });
   const [song, setSong] = useState({
     idsong: 0,
@@ -41,6 +46,7 @@ const Dashboard = () => {
       callback: (error, result) => callBackFetch(error, result),
     };
     dispatch(fetchAsyncAction(body_api));
+    getLocalData();
   }, []);
   function callBackFetch(error, result) {
     if (result) {
@@ -50,6 +56,19 @@ const Dashboard = () => {
       });
     }
   }
+  const getLocalData = async () => {
+    let check = await AsyncStorage.getItem('@hasAcc');
+    if (check) {
+      let result = await AsyncStorage.getItem('@acc');
+      setState({...state, userInfo: {info: result, sign: true}});
+    } else {
+      setState({...state, userInfo: {info: {}, sign: false}});
+    }
+    console.log(check);
+  };
+  // useEffect(() => {
+  //   getLocalData();
+  // }, []);
   function openInfo(item) {
     setState({
       ...state,
@@ -105,9 +124,7 @@ const Dashboard = () => {
           <IconCustom name="md-settings-outline" handlePress={openSetting} />
         </View>
       </View>
-      <Text1 style={[stylescreen.DashboardTextFeatured, {marginTop: 0}]}>
-        Featured Tracks
-      </Text1>
+      <Text1 style={[stylescreen.DashboardTextFeatured]}>Featured Tracks</Text1>
       <ListAlbums
         articles={state.music}
         isloading={true}
@@ -151,7 +168,7 @@ const Dashboard = () => {
         hidden={hiddenAlert}
       />
       <SettingPopup isOpen={state.openSetting} hidden={hiddenSetting} />
-      <AccPopup isOpen={state.openAcc} hidden={hiddenAcc} />
+      {state.openAcc && <AccPopup isOpen={state.openAcc} hidden={hiddenAcc} />}
     </Container>
   );
 };

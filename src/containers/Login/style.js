@@ -20,6 +20,7 @@ export const Styles = StyleSheet.create({
     padding: 12,
     alignItems: 'center',
     borderRadius: 8,
+    marginBottom: 16,
   },
   inputGroup: {marginTop: 16, height: 280, justifyContent: 'space-between'},
   checkbox: {
