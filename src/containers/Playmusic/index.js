@@ -37,8 +37,6 @@ export default function Playmusic({
         setNextMusic(allMusic[i + 1]);
       }
     }
-
-    console.log(song);
     TrackPlayer.stop();
     setIsPlay(true);
     TrackPlayer.setupPlayer().then(async () => {

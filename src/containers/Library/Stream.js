@@ -23,18 +23,13 @@ const Stream = () => {
         const response = await fetch(
           `https://fakeserver-musicaap.herokuapp.com/playlist`,
         );
-        // console.log(response)
         const jsonData = await response.json();
-
-        console.log(jsonData[0].name);
         setAllPlaylist(jsonData);
       } catch (e) {
-        console.log(e);
+        throw e;
       }
     }
     getdata();
-    // console.log(projects)s
-    console.log('---');
   }, []);
   const navigation = useNavigation();
   const openInplaylist = (songinplaylist) => {
@@ -44,7 +39,6 @@ const Stream = () => {
     });
   };
   const renderItem = ({item, index}) => {
-    console.log(item.songinplaylist);
     return (
       <TouchableOpacity onPress={() => openInplaylist(item.songinplaylist)}>
         <Playlist name={item.name} />

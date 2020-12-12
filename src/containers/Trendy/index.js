@@ -13,7 +13,6 @@ const Trendy = () => {
     linePress: null,
   });
   function onLinePress(n) {
-    console.log(n);
     setState({
       ...state,
       linePress: n,
@@ -40,9 +39,6 @@ const Trendy = () => {
   const theme = useSelector((state) => state.theme);
   const music = useSelector((state) => state.listMusic);
   const isFocused = useIsFocused();
-  useEffect(() => {
-    console.log(isFocused);
-  }, [isFocused]);
   return (
     <Container theme={theme}>
       <View style={{padding: 4}}>

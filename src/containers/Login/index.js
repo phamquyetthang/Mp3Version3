@@ -41,15 +41,13 @@ export default function Login() {
     try {
       const jsonValue = await AsyncStorage.getItem('@acc');
       if (jsonValue != null) {
-        console.log(JSON.parse(jsonValue).email);
         setUser({
           email: JSON.parse(jsonValue).email,
           pass: JSON.parse(jsonValue).password,
         });
       }
     } catch (e) {
-      // error reading value
-      console.log(e);
+      throw e;
     }
   };
   useEffect(() => {

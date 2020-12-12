@@ -19,7 +19,7 @@ const SearchForm = () => {
         placeholder="Tìm kiếm"
         onChangeText={onChangeSearch}
         value={searchQuery}
-        onSubmitEditing={() => console.log(searchQuery)}
+        onSubmitEditing={() => null}
         style={{
           backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
         }}
