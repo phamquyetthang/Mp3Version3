@@ -17,20 +17,56 @@ import Modal from 'react-native-modal';
 const Stream = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [allPlaylist, setAllPlaylist] = useState([]);
+  const [namePlaylist,setNamePlaylist]=useState("")
+  async function getdata() {
+    try {
+      const response = await fetch(
+        `https://fakeserver-musicaap.herokuapp.com/playlist`,
+      );
+      // console.log(response)
+      const jsonData = await response.json();
+
+      console.log(jsonData[0].name);
+      setAllPlaylist(jsonData);
+    } catch (e) {
+      console.log(e);
+    }
+  }
   useEffect(() => {
-    async function getdata() {
+    
+    getdata();
+    // console.log(projects)s
+    console.log('---');
+  }, []);
+  async function postPlaylist(data) {
+    if(namePlaylist!=""){
       try {
         const response = await fetch(
           `https://fakeserver-musicaap.herokuapp.com/playlist`,
+          {
+            method:"POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name:data,
+              songinplaylist:[] 
+            }),
+          }
         );
         const jsonData = await response.json();
-        setAllPlaylist(jsonData);
+        console.log(jsonData)
       } catch (e) {
-        throw e;
+        console.log(e);
       }
     }
-    getdata();
-  }, []);
+    getdata()
+  }
+  const createPlaylist=()=>{
+    postPlaylist(namePlaylist)
+    setModalVisible(false)
+  }
   const navigation = useNavigation();
   const openInplaylist = (songinplaylist) => {
     navigation.navigate('Inplaylist', {
@@ -39,9 +75,10 @@ const Stream = () => {
     });
   };
   const renderItem = ({item, index}) => {
+   
     return (
       <TouchableOpacity onPress={() => openInplaylist(item.songinplaylist)}>
-        <Playlist name={item.name} />
+        <Playlist name={item.name} image={item?.songinplaylist[0]?.image}/>
       </TouchableOpacity>
     );
   };
@@ -71,14 +108,20 @@ const Stream = () => {
         onBackdropPress={() => setModalVisible(false)}
         onBackButtonPress={() => setModalVisible(false)}>
         <BackgroudTheme style={styles.modalInputPlaylist}>
-          <View>
+          <View style={{flexDirection:"row",justifyContent:"space-between"}}>
             <Text2 style={{fontSize: 20, marginTop: 20}}>Tên Playlist</Text2>
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <Text2 style={{fontSize: 20, marginTop: 20}}> x </Text2>
+            </TouchableOpacity>
+            
           </View>
 
-          <TextInput style={styles.inputPlaylistName} />
+          <TextInput style={styles.inputPlaylistName} onChangeText={(text) =>
+              setNamePlaylist(text)
+            }/>
           <ButtonTheme
             style={styles.buttonInputPlaylist}
-            onPress={() => setModalVisible(false)}>
+            onPress={createPlaylist}>
             <Text1>Tạo Playlist</Text1>
           </ButtonTheme>
         </BackgroudTheme>

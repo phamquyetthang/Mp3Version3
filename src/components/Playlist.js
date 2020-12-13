@@ -1,12 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Image, View} from 'react-native';
 import {TextTheme} from '../asset/styles/themes';
 import {styles} from '../containers/Library/styles';
 
-export default function Playlist({name}) {
+export default function Playlist({name,image}) {
   return (
     <View style={styles.createPlaylist}>
-      <View style={styles.iconPluss}></View>
+      <Image style={styles.iconPluss} source={{uri: image}}></Image>
       <TextTheme style={styles.textcreatePlaylist}>{name}</TextTheme>
     </View>
   );
