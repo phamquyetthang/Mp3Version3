@@ -131,13 +131,6 @@ const Dashboard = () => {
         Song={song}
         setSong={setSong}
       />
-      <Text1 style={stylescreen.DashboardTextFeatured}>Bolero music</Text1>
-      <ListAlbums
-        articles={state.music}
-        isloading={true}
-        Song={song}
-        setSong={setSong}
-      />
       <Text1 style={stylescreen.DashboardTextFeatured}>Top Tracks</Text1>
       <View style={stylescreen.DashboardToptracks}>
         {state.music.length !== 0 ? (

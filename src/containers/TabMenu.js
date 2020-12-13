@@ -15,8 +15,10 @@ const Tab = createMaterialTopTabNavigator();
 const TabMenu = () => {
   const playing = useSelector((state) => state.playing);
   const [modalVisible, setModalVisible] = useState(false);
-  const allMusic = useSelector((state) => state.listMusic);
+  const allMusicstart = useSelector((state) => state.listMusic);
   const menuTheme = useSelector((state) => state.theme.tabBarOptions);
+  const listPlay = useSelector((state) => state.listPlay);
+  // console.log('l2', listPlay)
   return (
     <ContainerView>
       <View style={styles.playBox}>
@@ -24,7 +26,8 @@ const TabMenu = () => {
           <Playmusic
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
-            allMusic={allMusic}
+            allMusic={listPlay}
+            allMusicstart={allMusicstart}
             song={playing.item}
             setSong={() => null}
           />
