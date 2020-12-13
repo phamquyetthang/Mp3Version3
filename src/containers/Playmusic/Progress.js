@@ -27,7 +27,6 @@ export default function Progress(time) {
   useInterval(() => {
     if (progress < time.time) {
       setProgress(progress + 1);
-      // console.log(isplay)
     }
   }, 1000);
 

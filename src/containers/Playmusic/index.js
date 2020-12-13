@@ -31,9 +31,7 @@ export default function Playmusic({
   allMusicstart,
   allMusic,
 }) {
-  // console.log(allMusic)
   const [isPlay, setIsPlay] = useState(false);
-  // const [nextMusic, setNextMusic] = useState({});
   
 
   const dispatch = useDispatch();
@@ -49,7 +47,6 @@ export default function Playmusic({
     trackPlayerInit();
     TrackPlayer.updateOptions({
       stopWithApp: true,
-      // alwaysPauseOnInterruption: true,
       capabilities: [
         TrackPlayer.CAPABILITY_PLAY,
         TrackPlayer.CAPABILITY_PAUSE,
@@ -91,18 +88,7 @@ export default function Playmusic({
   useEffect(() => {
     TrackPlayer.skip(String(song.id));
   }, [song])
-  // useEffect(() => {
-   
-      
-  //     await TrackPlayer.skip(String(song.id));
-     
-   
-  // }, [song])
-  // String(song.id)
-  // const onPressFunction=()=>{
-  //   TrackPlayer.add(trach)
-  //   TrackPlayer.play();
-  // }
+
 
   const playmussic = () => {
     if (!isPlay) {
@@ -119,7 +105,6 @@ export default function Playmusic({
     dispatch(setIsPlayingAction(allMusicstart[song.id+1]))
   }
   const spinValue = new Animated.Value(0);
-  // First set up animation
   Animated.loop(
     Animated.timing(spinValue, {
       toValue: 1,

@@ -7,14 +7,14 @@ export const stylescreen = StyleSheet.create({
     color: '#fff',
   },
   DashboardHeader: {
-    padding: 20,
+    padding: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   DashboardTextFeatured: {
     fontWeight: 'bold',
     paddingHorizontal: 20,
-    marginTop:16
+    marginTop: 16,
   },
   DashboardFeatured: {
     paddingLeft: 20,
@@ -31,7 +31,7 @@ export const stylescreen = StyleSheet.create({
   },
   DashboardToptracks: {
     // width: '100%',
-    marginTop:16,
+    marginTop: 16,
     flex: 0.9,
     // backgroundColor:"gray",
     // marginLeft: 20,
@@ -47,5 +47,6 @@ export const stylescreen = StyleSheet.create({
     flexDirection: 'row',
     width: 60,
     justifyContent: 'space-between',
+    // marginRight: -8,
   },
 });

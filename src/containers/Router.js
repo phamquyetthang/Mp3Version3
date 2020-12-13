@@ -7,10 +7,13 @@ import {useSelector} from 'react-redux';
 import SearchForm from '../components/SearchForm';
 import Inplaylist from '../components/Inplaylist';
 import Stream from './Library/Stream';
+import Login from './Login';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 export default function Router() {
   const theme = useSelector((state) => state.theme);
+  const hasAcc = AsyncStorage.getItem('@hasAcc');
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
@@ -19,6 +22,7 @@ export default function Router() {
             header: () => null,
           }}>
           <Stack.Screen name="Main" component={TabMenu} />
+          {hasAcc && <Stack.Screen name="Login" component={Login} />}
           <Stack.Screen
             name="SearchForm"
             component={SearchForm}
@@ -34,7 +38,6 @@ export default function Router() {
             component={Inplaylist}
             options={{animationTypeForReplace: 'pop'}}
           />
-          
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

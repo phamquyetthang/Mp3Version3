@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {unitH, unitW} from '../asset/styles/size';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -23,14 +23,14 @@ const SongItem = ({
           </View>
         </TouchableOpacity>
         <View style={localStyles.options}>
-          {!like && (
+          {like && (
             <TouchableOpacity onPress={handleLike} style={localStyles.p4}>
               <TextTheme>
                 <Icon name="md-heart-outline" size={24} />
               </TextTheme>
             </TouchableOpacity>
           )}
-          <TouchableOpacity onPress={openInfo} style={localStyles.p4}>
+          <TouchableOpacity onPress={openInfo} style={[localStyles.p4]}>
             <TextTheme>
               <Icon name="md-ellipsis-vertical" size={24} />
             </TextTheme>
@@ -67,7 +67,6 @@ const localStyles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     right: 4,
-    width: 56 * unitW,
     justifyContent: 'space-between',
   },
   p4: {padding: 4},

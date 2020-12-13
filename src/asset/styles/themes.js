@@ -85,9 +85,12 @@ export const SettingModal = styled.View`
   height: ${settingH};
   margin-right: ${s20};
   margin-top: ${s50};
-  align-self: flex-end;
+  align-self: ${(props) => (props.type === 'acc' ? 'flex-start' : 'flex-end')};
   border-radius: 12px;
-  border-top-right-radius: 0px;
+  border-top-right-radius: ${(props) =>
+    props.type === 'acc' ? '12px' : '0px'};
+  border-top-left-radius: ${(props) => (props.type === 'acc' ? '0px' : '12px')};
+  margin-left: ${(props) => (props.type === 'acc' ? s20 : 0)};
 `;
 export const BackgroudTheme = styled.View`
   background-color: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};

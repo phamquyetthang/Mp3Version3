@@ -28,7 +28,7 @@ function* fetchAsyncWatch() {
         }
       }
     } catch (error) {
-      throw error
+      throw error;
     } finally {
       // else if (payload?.callback) payload.callback("Server Error", {});
       yield put(offLoadingAction());

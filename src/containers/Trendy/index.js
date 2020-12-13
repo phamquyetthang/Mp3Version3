@@ -80,7 +80,6 @@ const Trendy = () => {
           showsVerticalScrollIndicator={false}
         />
       )}
-      
       <View style={{marginTop: 8}}>
         <Text style={{fontWeight: 'bold', fontSize: 20}}>Top 50</Text>
       </View>

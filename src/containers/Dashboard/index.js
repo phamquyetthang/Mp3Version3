@@ -1,9 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
 import {Container, Text1} from '../../asset/styles/themes';
+import AccPopup from '../../components/AccPopup';
 import AnalogPopup from '../../components/AnalogPopup';
 import IconCustom from '../../components/IconCustom';
 import InfoSongPopup from '../../components/InfoSongPopup';
@@ -23,6 +25,11 @@ const Dashboard = () => {
     isShowAlert: false,
     alert: '',
     openSetting: false,
+    openAcc: false,
+    userInfo: {
+      info: {},
+      sign: false,
+    },
   });
   const [song, setSong] = useState({
     idsong: 0,
@@ -39,6 +46,7 @@ const Dashboard = () => {
       callback: (error, result) => callBackFetch(error, result),
     };
     dispatch(fetchAsyncAction(body_api));
+    // getLocalData();
   }, []);
   function callBackFetch(error, result) {
     if (result) {
@@ -48,6 +56,19 @@ const Dashboard = () => {
       });
     }
   }
+  const getLocalData = async () => {
+    let check = await AsyncStorage.getItem('@hasAcc');
+    if (check) {
+      let result = await AsyncStorage.getItem('@acc');
+      setState({...state, userInfo: {info: JSON.parse(result), sign: true}});
+    } else {
+      setState({...state, userInfo: {info: {}, sign: false}});
+    }
+  };
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    getLocalData();
+  }, [isFocused]);
   function openInfo(item) {
     setState({
       ...state,
@@ -86,20 +107,24 @@ const Dashboard = () => {
   const hiddenSetting = () => {
     setState({...state, openSetting: false});
   };
+  const openAcc = () => {
+    setState({...state, openAcc: true});
+  };
+  const hiddenAcc = () => {
+    setState({...state, openAcc: false});
+  };
   return state.music.length === 0 ? (
     <Loading />
   ) : (
     <Container>
       <View style={stylescreen.DashboardHeader}>
-        <IconCustom name="md-notifications-outline" handlePress={openSearch} />
+        <IconCustom name="md-person-outline" handlePress={openAcc} />
         <View style={stylescreen.searchSet}>
           <IconCustom name="md-search-outline" handlePress={openSearch} />
           <IconCustom name="md-settings-outline" handlePress={openSetting} />
         </View>
       </View>
-      <Text1 style={[stylescreen.DashboardTextFeatured, {marginTop: 0}]}>
-        Featured Tracks
-      </Text1>
+      <Text1 style={[stylescreen.DashboardTextFeatured]}>Featured Tracks</Text1>
       <ListAlbums
         articles={state.music}
         isloading={true}
@@ -116,6 +141,7 @@ const Dashboard = () => {
                 item={item}
                 openInfo={() => openInfo(item)}
                 handleLike={handleLike}
+                like={state.userInfo.sign}
               />
             )}
             keyExtractor={(item) => item.url}
@@ -136,6 +162,7 @@ const Dashboard = () => {
         hidden={hiddenAlert}
       />
       <SettingPopup isOpen={state.openSetting} hidden={hiddenSetting} />
+      {state.openAcc && <AccPopup isOpen={state.openAcc} hidden={hiddenAcc} />}
     </Container>
   );
 };

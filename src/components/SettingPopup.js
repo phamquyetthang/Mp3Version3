@@ -33,7 +33,7 @@ const SettingPopup = ({isOpen, hidden}) => {
       animationOutTiming={200}
       backdropTransitionInTiming={200}
       onBackdropPress={hidden}>
-      <SettingModal>
+      <SettingModal type="setting">
         <TextTheme style={localStyle.h1}>Setting</TextTheme>
         <View style={localStyle.listSetting}>
           <View style={localStyle.row}>
