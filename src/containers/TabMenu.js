@@ -1,12 +1,10 @@
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Dashboard from './Dashboard';
 import Library from './Library';
-import Download from './Download';
 import Trendy from './Trendy';
-import User from './User';
 import {StyleSheet, View} from 'react-native';
 import Playmusic from './Playmusic';
 import {useSelector} from 'react-redux';

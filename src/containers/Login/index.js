@@ -114,7 +114,7 @@ export default function Login() {
           <TouchableOpacity
             style={Styles.button1}
             onPress={() => navigation.navigate('Main')}>
-            <Text style={{fontSize: 16}}>Đăng nhập</Text>
+            <Text style={{fontSize: 16}}>Bỏ qua đăng nhập</Text>
           </TouchableOpacity>
         </View>
       </ContainerView>

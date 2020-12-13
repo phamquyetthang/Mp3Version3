@@ -15,7 +15,7 @@ const AccPopup = ({isOpen, hidden, handlePress = null}) => {
     if (check) {
       let result = await AsyncStorage.getItem('@acc');
       if (result) {
-        setUserInfo({info: result, sign: true});
+        setUserInfo({info: JSON.parse(result), sign: true});
       }
     } else {
       setUserInfo({info: {}, sign: false});
@@ -44,7 +44,7 @@ const AccPopup = ({isOpen, hidden, handlePress = null}) => {
       onBackdropPress={hidden}>
       <SettingModal type="acc" style={localStyle.acc}>
         <TextTheme>
-          {userInfo.info
+          {userInfo.sign
             ? String(userInfo.info?.name)
             : 'Tài khoản chưa đăng nhập'}
         </TextTheme>
