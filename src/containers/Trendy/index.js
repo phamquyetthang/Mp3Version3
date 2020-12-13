@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import * as shape from 'd3-shape';

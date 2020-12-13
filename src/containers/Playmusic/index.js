@@ -21,7 +21,6 @@ import {
   Text2,
   TextTheme,
 } from '../../asset/styles/themes';
-import {useTrackPlayerProgress} from 'react-native-track-player';
 import IconCustom from '../../components/IconCustom';
 
 export default function Playmusic({
@@ -31,11 +30,10 @@ export default function Playmusic({
   allMusicstart,
   allMusic,
 }) {
-  const [isPlay, setIsPlay] = useState(false);
-  
+  const [isPlay, setIsPlay] = useState(true);
 
   const dispatch = useDispatch();
- 
+
   const trackPlayerInit = async () => {
     await TrackPlayer.setupPlayer({
       maxCacheSize: 1048576,
@@ -72,7 +70,7 @@ export default function Playmusic({
         TrackPlayer.CAPABILITY_SKIP,
       ],
     });
-    
+
     TrackPlayer.setupPlayer().then(async () => {
       await TrackPlayer.reset();
       // await TrackPlayer.stop();
@@ -80,15 +78,10 @@ export default function Playmusic({
       await TrackPlayer.skip(String(song.id));
       await TrackPlayer.play();
     });
-
-   
-
-    console.log('next');
   }, []);
   useEffect(() => {
     TrackPlayer.skip(String(song.id));
-  }, [song])
-
+  }, [song]);
 
   const playmussic = () => {
     if (!isPlay) {
@@ -99,11 +92,11 @@ export default function Playmusic({
       setIsPlay(false);
     }
   };
-  const nextmusiccc = ()=>{
+  const nextmusiccc = () => {
     TrackPlayer.skipToNext();
 
-    dispatch(setIsPlayingAction(allMusicstart[song.id+1]))
-  }
+    dispatch(setIsPlayingAction(allMusicstart[song.id + 1]));
+  };
   const spinValue = new Animated.Value(0);
   Animated.loop(
     Animated.timing(spinValue, {
@@ -119,9 +112,6 @@ export default function Playmusic({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
   });
-  useEffect(() => {
-    console.log('next2');
-  }, []);
   return (
     <View>
       <PlayingBar onPress={() => setModalVisible(true)}>

@@ -1,66 +1,77 @@
-import React, { useEffect, useState } from 'react';
-import {FlatList, Image, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {unitH, unitW} from '../asset/styles/size';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {BackgroudTheme, ButtonTheme, ContainerModal, Text1, Text2, TextTheme} from '../asset/styles/themes';
+import {
+  BackgroudTheme,
+  ButtonTheme,
+  ContainerModal,
+  Text1,
+  Text2,
+  TextTheme,
+} from '../asset/styles/themes';
 import Modal from 'react-native-modal';
-import { styles } from '../containers/Library/styles';
+import {styles} from '../containers/Library/styles';
 const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
-  const [modalVisible,setModalVisible]=useState(false)
+  const [modalVisible, setModalVisible] = useState(false);
   const [allPlaylist, setAllPlaylist] = useState([]);
-  const [musicCheck,setMusicCheck]= useState([]);
+  const [musicCheck, setMusicCheck] = useState([]);
   async function getdata() {
     try {
       const response = await fetch(
         `https://fakeserver-musicaap.herokuapp.com/playlist`,
       );
-      // console.log(response)
       const jsonData = await response.json();
-      console.log()
       setAllPlaylist(jsonData);
     } catch (e) {
       console.log(e);
     }
   }
   useEffect(() => {
-    
     getdata();
-    // console.log(projects)s
-    console.log('---');
   }, []);
-  async function patchData  (id,name){
-    let aaaa=musicCheck;
-    for(let i=0;i<allPlaylist.length;i++){
-      if(id === allPlaylist[i].id){
-        aaaa.push()
+  async function patchData(id, name) {
+    let aaaa = musicCheck;
+    for (let i = 0; i < allPlaylist.length; i++) {
+      if (id === allPlaylist[i].id) {
+        aaaa.push();
       }
     }
-    
-    const response = await  fetch("https://fakeserver-musicaap.herokuapp.com/playlist" + "/" + id, {
-            method: 'PUT',
-            headers: {
-                // Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name:name,
-              songinplaylist:aaaa
-            })
-          }).then((response) => {
-            response.json().then((response) => {
-              console.log(response);
-            })
-          }).catch(err => {
-            console.error(err)
-          })
-    console.log(aaaa)
-          setModalVisible(false)
+
+    const response = await fetch(
+      'https://fakeserver-musicaap.herokuapp.com/playlist' + '/' + id,
+      {
+        method: 'PUT',
+        headers: {
+          // Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          songinplaylist: aaaa,
+        }),
+      },
+    )
+      .then((response) => {
+        response.json().then((response) => {
+          console.log(response);
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    setModalVisible(false);
   }
-  const checkmusic = (item2)=>{
-    setModalVisible(true)
-    musicCheck.push(item2)
-    // console.log(musicCheck)
-  }
+  const checkmusic = (item2) => {
+    setModalVisible(true);
+    musicCheck.push(item2);
+  };
   return (
     <Modal
       isVisible={showInfo}
@@ -81,10 +92,10 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
         </View>
         <View>
           <OptionItem icon={'md-eye-off-outline'} text="Ẩn bài hát" />
-          <TouchableOpacity onPress={()=>checkmusic(item)}>
-           <OptionItem icon={'md-bookmark-outline'} text="Thêm vào playlist" />
+          <TouchableOpacity onPress={() => checkmusic(item)}>
+            <OptionItem icon={'md-bookmark-outline'} text="Thêm vào playlist" />
           </TouchableOpacity>
-          
+
           <OptionItem icon={'md-heart-outline'} text="Thêm vào yêu thích" />
           <OptionItem
             icon={'md-notifications-outline'}
@@ -92,32 +103,31 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
           />
         </View>
       </ContainerModal>
-                  <Modal
-                    isVisible={modalVisible}
-                    style={styles.fstart}
-                    onBackdropPress={() => setModalVisible(false)}
-                    onBackButtonPress={() => setModalVisible(false)}>
-                    <BackgroudTheme style={styles.modalInputPlaylist}>
-                      <View style={{flexDirection:"row",justifyContent:"space-between"}}>
-                        <Text2 style={{fontSize: 20, marginTop: 20}}>Tên Playlist</Text2>
-                        <TouchableOpacity onPress={() => setModalVisible(false)}>
-                          <Text2 style={{fontSize: 20, marginTop: 20}}> x </Text2>
-                        </TouchableOpacity>
-                        
-                      </View>
-                      <FlatList
-                          data={allPlaylist}
-                          renderItem={({item}) => (
-                            <ButtonTheme onPress={()=>patchData(item.id,item.name)}
-                              style={styles.buttonInputPlaylist}>
-                                <Text1>{item.name}</Text1>
-                            </ButtonTheme>
-                          )}
-                          keyExtractor={(item) => item.id}
-                        />
-                     
-                    </BackgroudTheme>
-                  </Modal>
+      <Modal
+        isVisible={modalVisible}
+        style={styles.fstart}
+        onBackdropPress={() => setModalVisible(false)}
+        onBackButtonPress={() => setModalVisible(false)}>
+        <BackgroudTheme style={styles.modalInputPlaylist}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text2 style={{fontSize: 20, marginTop: 20}}>Tên Playlist</Text2>
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <Text2 style={{fontSize: 20, marginTop: 20}}> x </Text2>
+            </TouchableOpacity>
+          </View>
+          <FlatList
+            data={allPlaylist}
+            renderItem={({item}) => (
+              <ButtonTheme
+                onPress={() => patchData(item.id, item.name)}
+                style={styles.buttonInputPlaylist}>
+                <Text1>{item.name}</Text1>
+              </ButtonTheme>
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        </BackgroudTheme>
+      </Modal>
     </Modal>
   );
 };
