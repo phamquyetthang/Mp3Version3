@@ -48,7 +48,6 @@ const OptionItem = ({icon, text}) => {
   );
 };
 
-export default InfoSongPopup;
 const localStyles = StyleSheet.create({
   hearderPopup: {
     flexDirection: 'row',
@@ -78,3 +77,5 @@ const localStyles = StyleSheet.create({
   optionItem: {margin: 10 * unitH, flexDirection: 'row', alignItems: 'center'},
   optionText: {fontSize: 14 * unitH, marginLeft: 12 * unitW},
 });
+
+export default React.memo(InfoSongPopup);

@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
@@ -26,10 +25,6 @@ const Dashboard = () => {
     alert: '',
     openSetting: false,
     openAcc: false,
-    userInfo: {
-      info: {},
-      sign: false,
-    },
   });
   const [song, setSong] = useState({
     idsong: 0,
@@ -46,7 +41,6 @@ const Dashboard = () => {
       callback: (error, result) => callBackFetch(error, result),
     };
     dispatch(fetchAsyncAction(body_api));
-    // getLocalData();
   }, []);
   function callBackFetch(error, result) {
     if (result) {
@@ -56,19 +50,6 @@ const Dashboard = () => {
       });
     }
   }
-  const getLocalData = async () => {
-    let check = await AsyncStorage.getItem('@hasAcc');
-    if (check) {
-      let result = await AsyncStorage.getItem('@acc');
-      setState({...state, userInfo: {info: JSON.parse(result), sign: true}});
-    } else {
-      setState({...state, userInfo: {info: {}, sign: false}});
-    }
-  };
-  const isFocused = useIsFocused();
-  useEffect(() => {
-    getLocalData();
-  }, [isFocused]);
   function openInfo(item) {
     setState({
       ...state,
@@ -113,6 +94,7 @@ const Dashboard = () => {
   const hiddenAcc = () => {
     setState({...state, openAcc: false});
   };
+  const isFocused = useIsFocused();
   return state.music.length === 0 ? (
     <Loading />
   ) : (
@@ -140,7 +122,7 @@ const Dashboard = () => {
       />
       <Text1 style={stylescreen.DashboardTextFeatured}>Top Tracks</Text1>
       <View style={stylescreen.DashboardToptracks}>
-        {state.music.length !== 0 ? (
+        {state.music.length !== 0 && isFocused && (
           <FlatList
             data={state.music}
             renderItem={({item}) => (
@@ -148,13 +130,12 @@ const Dashboard = () => {
                 item={item}
                 openInfo={() => openInfo(item)}
                 handleLike={handleLike}
-                like={state.userInfo.sign}
               />
             )}
             keyExtractor={(item) => item.url}
             showsVerticalScrollIndicator={false}
           />
-        ) : null}
+        )}
       </View>
       {state.songInfo && (
         <InfoSongPopup

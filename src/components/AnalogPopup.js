@@ -38,4 +38,4 @@ const localStyles = StyleSheet.create({
   modalLable: {textAlign: 'center', fontSize: 16},
 });
 
-export default AnalogPopup;
+export default React.memo(AnalogPopup);

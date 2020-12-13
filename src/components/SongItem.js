@@ -1,16 +1,28 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {unitH, unitW} from '../asset/styles/size';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Text1, Text2, TextTheme} from '../asset/styles/themes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const SongItem = ({
   item,
   trend,
-  like,
   openInfo,
   handleLike = null,
   handlePress = null,
 }) => {
+  const [like, setLike] = useState(false);
+  const signCheck = async () => {
+    let check = await AsyncStorage.getItem('@hasAcc');
+    if (check) {
+      setLike(true);
+    } else {
+      setLike(false);
+    }
+  };
+  useEffect(() => {
+    signCheck();
+  }, []);
   return (
     item && (
       <View style={localStyles.songitem}>
