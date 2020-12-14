@@ -108,18 +108,6 @@ export default function Playmusic({
       useNativeDriver: true, // To make use of native driver for performance
     }),
   ).start();
-  // };
-  // const stopSpin = () => {
-  //   Animated.loop(
-  //     Animated.timing(spinValue, {
-  //       toValue: 1,
-  //       duration: 10000,
-  //       easing: Easing.linear, // Easing is an additional import from react-native
-  //       useNativeDriver: true, // To make use of native driver for performance
-  //     }),
-  //   ).stop();
-  // };
-  // Next, interpolate beginning and end values (in this case 0 and 1)
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
@@ -135,45 +123,44 @@ export default function Playmusic({
             <TextTheme>{song.singer}</TextTheme>
           </View>
           <View style={styles.control}>
-            <TextTheme>
-              <Icon
-                name={'md-heart-outline'}
-                size={22}
-                onPress={() => setModalVisible(false)}
-              />
-            </TextTheme>
+            <IconCustom
+              name={'md-heart-outline'}
+              size={22}
+              handlePress={() => setModalVisible(false)}
+            />
             <TextTheme style={{marginHorizontal: 20 * unitW}}>
               <IconCustom
                 name={isPlay ? 'md-pause' : 'md-play'}
                 size={22}
-                onPress={playmussic}
+                handlePress={playmussic}
               />
             </TextTheme>
-            <TextTheme>
-              <Icon
-                name={'md-play-skip-forward'}
-                size={22}
-                onPress={nextmusiccc}
-              />
-            </TextTheme>
+            <IconCustom
+              name={'md-play-skip-forward'}
+              size={22}
+              handlePress={nextmusiccc}
+            />
           </View>
         </View>
       </PlayingBar>
       <Modal animationType="slide" visible={modalVisible}>
         <ContainerView style={{alignItems: 'center'}}>
           <View style={styles.hearderPopup}>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
-              <TextTheme style={styles.lable}>
-                <Icon name="md-chevron-down" size={32} />
-              </TextTheme>
-            </TouchableOpacity>
+            <IconCustom
+              style={styles.lable}
+              name="md-chevron-down"
+              size={32}
+              handlePress={() => setModalVisible(false)}
+            />
             <View>
               <Text1 style={styles.title}>{song.name}</Text1>
               <Text2 style={styles.lable}>{song.singer}</Text2>
             </View>
-            <TextTheme style={styles.options}>
-              <Icon name="md-ellipsis-vertical" size={24} />
-            </TextTheme>
+            <IconCustom
+              style={styles.options}
+              name="md-ellipsis-vertical"
+              size={24}
+            />
           </View>
           <Animated.Image
             style={[styles.imagesong, {transform: [{rotate: spin}]}]}
@@ -186,36 +173,26 @@ export default function Playmusic({
           <TextTheme style={styles.nameplay}>{song.name}</TextTheme>
           <TextTheme style={styles.singerplay}>{song.singer}</TextTheme>
           <View style={styles.plpau}>
-            <TextTheme>
-              <Icon name={'md-shuffle-outline'} size={28} />
-            </TextTheme>
-            <TextTheme>
-              <Icon
-                name={'md-play-skip-back'}
-                size={28}
-                onPress={() => setModalVisible(false)}
-              />
-            </TextTheme>
-            <TextTheme>
-              <Icon
-                name={
-                  isPlay ? 'md-pause-circle-outline' : 'md-play-circle-outline'
-                }
-                size={80}
-                onPress={playmussic}
-                style={{fontWeight: '100'}}
-              />
-            </TextTheme>
-            <TextTheme>
-              <Icon
-                name={'md-play-skip-forward'}
-                size={28}
-                onPress={nextmusiccc}
-              />
-            </TextTheme>
-            <TextTheme>
-              <Icon name={'md-repeat-outline'} size={28} />
-            </TextTheme>
+            <IconCustom name={'md-shuffle-outline'} size={28} />
+            <IconCustom
+              name={'md-play-skip-back'}
+              size={28}
+              handlePress={() => setModalVisible(false)}
+            />
+            <IconCustom
+              name={
+                isPlay ? 'md-pause-circle-outline' : 'md-play-circle-outline'
+              }
+              size={80}
+              handlePress={playmussic}
+              style={{fontWeight: '100'}}
+            />
+            <IconCustom
+              name={'md-play-skip-forward'}
+              size={28}
+              handlePress={nextmusiccc}
+            />
+            <IconCustom name={'md-repeat-outline'} size={28} />
           </View>
         </ContainerView>
       </Modal>

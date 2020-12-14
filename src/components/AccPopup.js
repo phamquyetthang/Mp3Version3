@@ -3,7 +3,12 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
-import {SettingModal, TextTheme, ButtonTheme} from '../asset/styles/themes';
+import {
+  SettingModal,
+  TextTheme,
+  ButtonTheme,
+  TextWhite,
+} from '../asset/styles/themes';
 
 const AccPopup = ({isOpen, hidden, handlePress = null}) => {
   const [userInfo, setUserInfo] = useState({
@@ -49,7 +54,7 @@ const AccPopup = ({isOpen, hidden, handlePress = null}) => {
             : 'Tài khoản chưa đăng nhập'}
         </TextTheme>
         <ButtonTheme style={localStyle.button} onPress={logout}>
-          <TextTheme>{userInfo.sign ? 'Đăng xuất' : 'Đăng nhập'}</TextTheme>
+          <TextWhite>{userInfo.sign ? 'Đăng xuất' : 'Đăng nhập'}</TextWhite>
         </ButtonTheme>
       </SettingModal>
     </Modal>

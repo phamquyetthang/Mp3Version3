@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 import {unitH} from '../asset/styles/size';
-import {ContainerView, TextTheme, ButtonTheme} from '../asset/styles/themes';
+import {ContainerView, ButtonTheme, TextWhite} from '../asset/styles/themes';
 
 const SearchForm = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -32,27 +32,27 @@ const SearchForm = () => {
         <ButtonTheme
           style={localStyles.chip}
           onPress={() => pressChip('Thu cuối')}>
-          <TextTheme>Thu cuối</TextTheme>
+          <TextWhite>Thu cuối</TextWhite>
         </ButtonTheme>
         <ButtonTheme
           style={localStyles.chip}
           onPress={() => pressChip('Hà Nội')}>
-          <TextTheme>Hà Nội</TextTheme>
+          <TextWhite>Hà Nội</TextWhite>
         </ButtonTheme>
         <ButtonTheme
           style={localStyles.chip}
           onPress={() => pressChip('Sao em nỡ đành quên')}>
-          <TextTheme>Sao em nỡ đành quên</TextTheme>
+          <TextWhite>Sao em nỡ đành quên</TextWhite>
         </ButtonTheme>
         <ButtonTheme
           style={localStyles.chip}
           onPress={() => pressChip('Hiphop')}>
-          <TextTheme>Hiphop</TextTheme>
+          <TextWhite>Hiphop</TextWhite>
         </ButtonTheme>
         <ButtonTheme
           style={localStyles.chip}
           onPress={() => pressChip('Tân cổ giao duyên')}>
-          <TextTheme>Tân cổ giao duyên</TextTheme>
+          <TextWhite>Tân cổ giao duyên</TextWhite>
         </ButtonTheme>
       </View>
     </ContainerView>
