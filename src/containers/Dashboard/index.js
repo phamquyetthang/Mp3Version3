@@ -13,7 +13,7 @@ import ListAlbums from '../../components/ListAlbums';
 import Loading from '../../components/Loading';
 import SettingPopup from '../../components/SettingPopup';
 import SongItem from '../../components/SongItem';
-import {fetchAsyncAction} from '../../redux/actions';
+import {fetchAsyncAction, setIsPlayingAction} from '../../redux/actions';
 import {stylescreen} from './styled';
 
 const Dashboard = () => {
@@ -142,6 +142,7 @@ const Dashboard = () => {
                 openInfo={() => openInfo(item)}
                 handleLike={handleLike}
                 like={state.userInfo.sign}
+                handlePress={() => dispatch(setIsPlayingAction(item))}
               />
             )}
             keyExtractor={(item) => item.url}

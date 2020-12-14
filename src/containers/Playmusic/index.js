@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Easing,
@@ -21,7 +21,6 @@ import {
   Text2,
   TextTheme,
 } from '../../asset/styles/themes';
-import {useTrackPlayerProgress} from 'react-native-track-player';
 import IconCustom from '../../components/IconCustom';
 
 export default function Playmusic({
@@ -31,11 +30,10 @@ export default function Playmusic({
   allMusicstart,
   allMusic,
 }) {
-  const [isPlay, setIsPlay] = useState(false);
-  
+  const [isPlay, setIsPlay] = useState(true);
 
   const dispatch = useDispatch();
- 
+
   const trackPlayerInit = async () => {
     await TrackPlayer.setupPlayer({
       maxCacheSize: 1048576,
@@ -72,39 +70,36 @@ export default function Playmusic({
         TrackPlayer.CAPABILITY_SKIP,
       ],
     });
-    
+
     TrackPlayer.setupPlayer().then(async () => {
       await TrackPlayer.reset();
-      // await TrackPlayer.stop();
       await TrackPlayer.add(allMusic);
       await TrackPlayer.skip(String(song.id));
       await TrackPlayer.play();
     });
-
-   
-
-    console.log('next');
+    // startSpin;
   }, []);
   useEffect(() => {
     TrackPlayer.skip(String(song.id));
-  }, [song])
-
+  }, [song]);
 
   const playmussic = () => {
     if (!isPlay) {
       TrackPlayer.play();
       setIsPlay(true);
+      // startSpin;
     } else {
       TrackPlayer.pause();
       setIsPlay(false);
+      // stopSpin;
     }
   };
-  const nextmusiccc = ()=>{
+  const nextmusiccc = () => {
     TrackPlayer.skipToNext();
-
-    dispatch(setIsPlayingAction(allMusicstart[song.id+1]))
-  }
-  const spinValue = new Animated.Value(0);
+    dispatch(setIsPlayingAction(allMusicstart[song.id + 1]));
+  };
+  const spinValue = useRef(new Animated.Value(0)).current;
+  // const startSpin = () => {
   Animated.loop(
     Animated.timing(spinValue, {
       toValue: 1,
@@ -113,15 +108,22 @@ export default function Playmusic({
       useNativeDriver: true, // To make use of native driver for performance
     }),
   ).start();
-
+  // };
+  // const stopSpin = () => {
+  //   Animated.loop(
+  //     Animated.timing(spinValue, {
+  //       toValue: 1,
+  //       duration: 10000,
+  //       easing: Easing.linear, // Easing is an additional import from react-native
+  //       useNativeDriver: true, // To make use of native driver for performance
+  //     }),
+  //   ).stop();
+  // };
   // Next, interpolate beginning and end values (in this case 0 and 1)
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
   });
-  useEffect(() => {
-    console.log('next2');
-  }, []);
   return (
     <View>
       <PlayingBar onPress={() => setModalVisible(true)}>

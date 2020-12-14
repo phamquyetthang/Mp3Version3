@@ -7,6 +7,7 @@ import {Container} from '../../asset/styles/themes';
 import {useSelector} from 'react-redux';
 import SongItem from '../../components/SongItem';
 import {useIsFocused} from '@react-navigation/native';
+import {setIsPlayingAction} from '../../redux/actions';
 
 const Trendy = () => {
   const [state, setState] = useState({
@@ -74,7 +75,12 @@ const Trendy = () => {
         <FlatList
           data={music}
           renderItem={({item}) => (
-            <SongItem item={item} trend={true} openInfo={() => null} />
+            <SongItem
+              item={item}
+              trend={true}
+              openInfo={() => null}
+              handlePress={() => setIsPlayingAction(item)}
+            />
           )}
           keyExtractor={(item) => item.url}
           showsVerticalScrollIndicator={false}
