@@ -42,6 +42,7 @@ export const styles = StyleSheet.create({
     height: 220,
     marginTop: 120,
     borderRadius: 8,
+    opacity: 1,
   },
   buttonInputPlaylist: {
     width: '100%',
@@ -53,5 +54,6 @@ export const styles = StyleSheet.create({
   },
   fstart: {
     justifyContent: 'flex-start',
+    margin: 0,
   },
 });

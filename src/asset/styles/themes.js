@@ -8,6 +8,7 @@ export const darkTheme = {
   PRIMARY_TEXT_COLOR: '#fff',
   SECONDARY_TEXT_COLOR: '#ffffff',
   BACKGROUND_PLAYING_BAR: '#2A1B39',
+  BUTTON: '#9257df',
   tabBarOptions: {
     activeTintColor: '#9257df',
     inactiveTintColor: '#99999F',
@@ -24,8 +25,9 @@ export const lightTheme = {
   PRIMARY_TEXT_COLOR: '#0F1E36',
   SECONDARY_TEXT_COLOR: '#0F1E36',
   BACKGROUND_PLAYING_BAR: '#fff',
+  BUTTON: '#33b5e5',
   tabBarOptions: {
-    activeTintColor: '#3E2AD1',
+    activeTintColor: '#33b5e5',
     inactiveTintColor: 'rgba(15, 30, 54, 0.5)',
     showIcon: true,
     showLabel: false,
@@ -60,7 +62,9 @@ export const Text2 = styled.Text`
 export const TextTheme = styled.Text`
   color: ${(props) => props.theme.PRIMARY_TEXT_COLOR};
 `;
-
+export const TextWhite = styled.Text`
+  color: #fff;
+`;
 export const PlayingBar = styled.TouchableOpacity`
   background-color: ${(props) => props.theme.BACKGROUND_PLAYING_BAR};
 `;
@@ -75,7 +79,7 @@ export const ModalPlaylist = styled.View`
   background-color: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
 `;
 export const ButtonTheme = styled.TouchableOpacity`
-  background-color: ${(props) => props.theme.BACKGROUND_PLAYING_BAR};
+  background-color: ${(props) => props.theme.BUTTON};
 `;
 const s20 = `${20 * unitH}px`;
 const s50 = `${50 * unitH}px`;
@@ -93,5 +97,5 @@ export const SettingModal = styled.View`
   margin-left: ${(props) => (props.type === 'acc' ? s20 : 0)};
 `;
 export const BackgroudTheme = styled.View`
-  background-color: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR};
 `;

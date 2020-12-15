@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
 import {
   View,
-  Text,
   Alert,
   Keyboard,
   TouchableOpacity,
@@ -12,7 +11,12 @@ import {Checkbox, TextInput} from 'react-native-paper';
 import {Styles} from './style';
 import {acc} from './acc.json';
 import {useNavigation} from '@react-navigation/native';
-import {ContainerView} from '../../asset/styles/themes';
+import {
+  ButtonTheme,
+  ContainerView,
+  TextTheme,
+  TextWhite,
+} from '../../asset/styles/themes';
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -78,7 +82,7 @@ export default function Login() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ContainerView style={Styles.loginForm}>
-        <Text style={Styles.text1}>ĐĂNG NHẬP</Text>
+        <TextTheme style={Styles.text1}>ĐĂNG NHẬP</TextTheme>
         <View style={Styles.inputGroup}>
           <TextInput
             label="Tên tài khoản"
@@ -105,17 +109,23 @@ export default function Login() {
                 setChecked(!checked);
               }}
             />
-            <Text> Nhớ mật khẩu</Text>
+            <TextTheme> Nhớ mật khẩu</TextTheme>
           </View>
 
-          <TouchableOpacity style={Styles.button1} onPress={checkLogin}>
-            <Text style={{fontSize: 16}}>Đăng nhập</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={Styles.button1}
-            onPress={() => navigation.navigate('Main')}>
-            <Text style={{fontSize: 16}}>Bỏ qua đăng nhập</Text>
-          </TouchableOpacity>
+          <ButtonTheme style={Styles.button1} onPress={checkLogin}>
+            <TextWhite style={{fontSize: 16}}>Đăng nhập</TextWhite>
+          </ButtonTheme>
+          <ButtonTheme style={Styles.button1} onPress={checkLogin}>
+            <TextWhite style={{fontSize: 16}}>Đăng ký</TextWhite>
+          </ButtonTheme>
+          <View style={Styles.mutil}>
+            <TouchableOpacity>
+              <TextTheme>Quên mật khẩu</TextTheme>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Main')}>
+              <TextTheme>Bỏ qua đăng nhập</TextTheme>
+            </TouchableOpacity>
+          </View>
         </View>
       </ContainerView>
     </TouchableWithoutFeedback>
