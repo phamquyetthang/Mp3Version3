@@ -20,3 +20,6 @@ src
 **Chạy thử trên Android** 
 - Vào folder : `/product_build/`
 - Tải file apk
+
+**For developer** :
+[Documment](https://reactnative.dev/docs/environment-setup)
