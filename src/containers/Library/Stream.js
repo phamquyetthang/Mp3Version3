@@ -25,8 +25,6 @@ const Stream = () => {
       );
       // console.log(response)
       const jsonData = await response.json();
-
-      console.log(jsonData[0].name);
       setAllPlaylist(jsonData);
     } catch (e) {
       console.log(e);

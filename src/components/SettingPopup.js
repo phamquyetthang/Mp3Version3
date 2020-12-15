@@ -32,6 +32,8 @@ const SettingPopup = ({isOpen, hidden}) => {
       animationInTiming={200}
       animationOutTiming={200}
       backdropTransitionInTiming={200}
+      swipeDirection={['left', 'right']}
+      onSwipeComplete={hidden}
       onBackdropPress={hidden}>
       <SettingModal type="setting">
         <TextTheme style={localStyle.h1}>Setting</TextTheme>

@@ -46,6 +46,8 @@ const AccPopup = ({isOpen, hidden, handlePress = null}) => {
       animationInTiming={200}
       animationOutTiming={200}
       backdropTransitionInTiming={200}
+      swipeDirection={['left', 'right']}
+      onSwipeComplete={hidden}
       onBackdropPress={hidden}>
       <SettingModal type="acc" style={localStyle.acc}>
         <TextTheme>

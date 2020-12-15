@@ -30,7 +30,6 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
       );
       // console.log(response)
       const jsonData = await response.json();
-      console.log();
       setAllPlaylist(jsonData);
     } catch (e) {
       console.log(e);
@@ -38,8 +37,6 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
   }
   useEffect(() => {
     getdata();
-    // console.log(projects)s
-    console.log('---');
   }, []);
   async function patchData(id, name) {
     let aaaa = musicCheck;
@@ -71,7 +68,6 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
       .catch((err) => {
         console.error(err);
       });
-    console.log(aaaa);
     setModalVisible(false);
   }
   const checkmusic = (item2) => {
