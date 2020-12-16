@@ -5,10 +5,13 @@ import Local from './Local';
 import Stream from './Stream';
 import {View} from 'react-native';
 import { styles } from './styles';
+import { useIsFocused } from '@react-navigation/native';
 
 const Tab = createMaterialTopTabNavigator();
 
 const Library = () => {
+  const isFocused = useIsFocused();
+
   return (
     <View style={styles.container}>
       <Tab.Navigator
@@ -24,6 +27,7 @@ const Library = () => {
           name="Stream"
           component={Stream}
           options={{title: 'Playlist'}}
+          isFocused={isFocused}
         />
         <Tab.Screen
           name="Local"
