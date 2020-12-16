@@ -19,4 +19,7 @@ src
 
 **Chạy thử trên Android** 
 - Vào folder : `/product_build/`
-- Tải file apk
+- Tải file apk ( Đây không phải bản mới nhất, hãy chạy react native để thử bản mới nhất )
+
+**For developer** :
+[Documment](https://reactnative.dev/docs/environment-setup)

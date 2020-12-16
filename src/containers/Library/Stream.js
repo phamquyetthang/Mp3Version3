@@ -10,11 +10,11 @@ import {
 } from '../../asset/styles/themes';
 import {styles} from './styles';
 import Playlist from '../../components/Playlist';
-import {useNavigation} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import IconCustom from '../../components/IconCustom';
 import Modal from 'react-native-modal';
 
-const Stream = () => {
+const Stream = ({isFocused}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [allPlaylist, setAllPlaylist] = useState([]);
   const [namePlaylist, setNamePlaylist] = useState('');
@@ -25,6 +25,7 @@ const Stream = () => {
       );
       // console.log(response)
       const jsonData = await response.json();
+      console.log(jsonData)
       setAllPlaylist(jsonData);
     } catch (e) {
       console.log(e);
@@ -34,7 +35,7 @@ const Stream = () => {
     getdata();
     // console.log(projects)s
     console.log('---');
-  }, []);
+  }, [isFocused]);
   async function postPlaylist(data) {
     if (namePlaylist != '') {
       try {

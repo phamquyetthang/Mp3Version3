@@ -96,7 +96,12 @@ export default function Playmusic({
   };
   const nextmusiccc = () => {
     TrackPlayer.skipToNext();
-    dispatch(setIsPlayingAction(allMusicstart[song.id + 1]));
+    dispatch(setIsPlayingAction(allMusicstart[song.id]));
+  };
+  const previousmusiccc = () => {
+    if(song.id>1){
+    TrackPlayer.skipToPrevious();
+    dispatch(setIsPlayingAction(allMusicstart[song.id - 2]));}
   };
   const spinValue = useRef(new Animated.Value(0)).current;
   // const startSpin = () => {
@@ -177,7 +182,7 @@ export default function Playmusic({
             <IconCustom
               name={'md-play-skip-back'}
               size={28}
-              handlePress={() => setModalVisible(false)}
+              handlePress={() => previousmusiccc()}
             />
             <IconCustom
               name={

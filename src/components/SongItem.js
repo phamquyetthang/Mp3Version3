@@ -12,6 +12,7 @@ const SongItem = ({
   handleLike = null,
   handlePress = null,
   background = {},
+  heart = false,
 }) => {
   return (
     item && (
@@ -28,7 +29,7 @@ const SongItem = ({
           {like && (
             <TouchableOpacity onPress={handleLike} style={localStyles.p4}>
               <TextTheme>
-                <Icon name="md-heart-outline" size={24} />
+              <Icon name={item.islike ? "md-heart" : "md-heart-outline"} size={24} />
               </TextTheme>
             </TouchableOpacity>
           )}
