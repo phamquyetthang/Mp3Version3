@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import * as shape from 'd3-shape';
@@ -36,13 +36,21 @@ const Trendy = () => {
         strokeWidth: state.linePress === '2' ? 3 : 1,
       },
     },
+    {
+      data: data2,
+      svg: {
+        stroke: 'pink',
+        onPress: () => onLinePress('3'),
+        strokeWidth: state.linePress === '3' ? 3 : 1,
+      },
+    },
   ];
   const theme = useSelector((state) => state.theme);
   const music = useSelector((state) => state.listMusic);
   const isFocused = useIsFocused();
   return (
     <Container theme={theme}>
-      <View style={{padding: 4}}>
+      <View style={{padding: 4, marginBottom: 12}}>
         <View style={{height: 200, paddingHorizontal: 4}}>
           <LineChart
             style={{height: 200}}
@@ -57,7 +65,7 @@ const Trendy = () => {
         <XAxis
           data={data3}
           svg={{
-            fill: '#fff',
+            fill: 'hotpink',
             fontSize: 12,
             fontWeight: 'bold',
             rotation: 20,
@@ -80,6 +88,7 @@ const Trendy = () => {
               trend={true}
               openInfo={() => null}
               handlePress={() => setIsPlayingAction(item)}
+              background={state.linePress == item.id ? {backgroundColor: '#9257df'} : {}}
             />
           )}
           keyExtractor={(item) => item.url}
@@ -141,7 +150,14 @@ const data3 = [
   {value: 14, date: 14},
   {value: 18, date: 15},
 ];
-
+const data2 = [
+  {value: 15, date: 10},
+  {value: 14, date: 11},
+  {value: 15, date: 12},
+  {value: 13, date: 13},
+  {value: 12, date: 14},
+  {value: 11, date: 15},
+];
 const data4 = [
   {value: 12, date: 10},
   {value: 14, date: 11},
