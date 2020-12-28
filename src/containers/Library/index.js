@@ -4,8 +4,8 @@ import {unitH} from '../../asset/styles/size';
 import Local from './Local';
 import Stream from './Stream';
 import {View} from 'react-native';
-import { styles } from './styles';
-import { useIsFocused } from '@react-navigation/native';
+import {styles} from './styles';
+import {useIsFocused} from '@react-navigation/native';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -13,7 +13,8 @@ const Library = () => {
   const isFocused = useIsFocused();
 
   return (
-    <View style={styles.container}>
+    isFocused && (
+      <View style={styles.container}>
       <Tab.Navigator
         initialRouteName="Stream"
         tabBarOptions={{
@@ -36,6 +37,7 @@ const Library = () => {
         />
       </Tab.Navigator>
     </View>
+    )
   );
 };
 

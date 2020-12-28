@@ -31,7 +31,7 @@ const Dashboard = () => {
       sign: false,
     },
   });
-  const [heart,setHeart]=useState(false)
+  const [heart, setHeart] = useState(false);
   const [song, setSong] = useState({
     idsong: 0,
     namesong: '',
@@ -91,8 +91,7 @@ const Dashboard = () => {
       alert: '',
     });
   }
-  async function likee(id){
-
+  async function likee(id) {
     const response = await fetch(
       'https://fakeserver-musicaap.herokuapp.com/music' + '/' + id,
       {
@@ -109,21 +108,20 @@ const Dashboard = () => {
       .then((response) => {
         response.json().then((response) => {
           console.log(response);
-          setHeart(true)
+          setHeart(true);
           let body_api = {
             endpoint: 'music',
             callback: (error, result) => callBackFetch(error, result),
           };
           dispatch(fetchAsyncAction(body_api));
         });
-
       })
       .catch((err) => {
         console.error(err);
       });
   }
   function handleLike(id) {
-    likee(id)
+    likee(id);
     setState({
       ...state,
       isShowAlert: true,
@@ -173,7 +171,7 @@ const Dashboard = () => {
               <SongItem
                 item={item}
                 openInfo={() => openInfo(item)}
-                handleLike={()=>handleLike(item.id)}
+                handleLike={() => handleLike(item.id)}
                 like={state.userInfo.sign}
                 handlePress={() => dispatch(setIsPlayingAction(item))}
               />

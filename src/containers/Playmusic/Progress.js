@@ -37,7 +37,7 @@ export default function Progress(time) {
       duration: time.time,
       useNativeDriver: false,
     }).start();
-  }, [progress]);
+  }, [progress, time]);
 
   const width = animation.current.interpolate({
     inputRange: [0, time.time],
