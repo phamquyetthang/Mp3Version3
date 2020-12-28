@@ -32,6 +32,7 @@ const Stream = ({isFocused}) => {
     }
   }
   useEffect(() => {
+    console.log('fc',isFocused)
     getdata();
     // console.log(projects)s
     console.log('---');

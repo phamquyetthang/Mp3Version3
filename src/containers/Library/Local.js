@@ -1,11 +1,13 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import { ContainerView } from '../../asset/styles/themes';
 
-const Local = () => {
+const Local = (allmusic) => {
+
   return (
-    <View>
-      <Text>2</Text>
-    </View>
+    <ContainerView>
+      
+    </ContainerView>
   );
 };
 

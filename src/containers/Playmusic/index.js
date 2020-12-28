@@ -120,7 +120,7 @@ export default function Playmusic({
   return (
     <View>
       <PlayingBar onPress={() => setModalVisible(true)}>
-        <Progress time={song.time} isPlay={0} />
+        <Progress time={song.time} isPlay={isPlay} />
         <View style={styles.playingbar}>
           <Image source={{uri: song.image}} style={styles.imagesongbottom} />
           <View>
@@ -172,7 +172,7 @@ export default function Playmusic({
             source={{uri: song.image}}
           />
           <View style={styles.slider}>
-            <Progress time={song.time} isPlay={0} />
+            <Progress time={song.time} isPlay={isPlay} />
           </View>
           {/* <Button title="ok" onPress={()=>setModalVisible(false)}/> */}
           <TextTheme style={styles.nameplay}>{song.name}</TextTheme>

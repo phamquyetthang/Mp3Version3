@@ -32,7 +32,7 @@ const Library = () => {
         <Tab.Screen
           name="Local"
           component={Local}
-          options={{title: 'Thiết bị'}}
+          options={{title: 'Nhạc yêu thích'}}
         />
       </Tab.Navigator>
     </View>

@@ -18,7 +18,7 @@ const TabMenu = () => {
   const allMusicstart = useSelector((state) => state.listMusic);
   const menuTheme = useSelector((state) => state.theme.tabBarOptions);
   const listPlay = useSelector((state) => state.listPlay);
-  // console.log('l2', listPlay)
+  // console.log('l2', allMusicstart)
   return (
     <ContainerView>
       <View style={styles.playBox}>

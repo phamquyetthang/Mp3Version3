@@ -10,6 +10,7 @@ import Stream from './Library/Stream';
 import Login from './Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Button} from 'react-native';
+import ListSearch from '../components/ListSearch';
 
 const Stack = createStackNavigator();
 export default function Router() {
@@ -43,6 +44,11 @@ export default function Router() {
           <Stack.Screen
             name="Stream"
             component={Stream}
+            options={{animationTypeForReplace: 'pop', headerShown: false}}
+          />
+          <Stack.Screen
+            name="ListSearch"
+            component={ListSearch}
             options={{animationTypeForReplace: 'pop', headerShown: false}}
           />
           <Stack.Screen

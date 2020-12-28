@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Searchbar} from 'react-native-paper';
@@ -7,7 +8,7 @@ import {ContainerView, ButtonTheme, TextWhite} from '../asset/styles/themes';
 
 const SearchForm = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
-
+  const navigation = useNavigation();
   const onChangeSearch = (query) => setSearchQuery(query);
   function pressChip(s) {
     setSearchQuery(searchQuery.concat(` ${s.toLowerCase()}`));
@@ -19,7 +20,9 @@ const SearchForm = () => {
         placeholder="Tìm kiếm"
         onChangeText={onChangeSearch}
         value={searchQuery}
-        onSubmitEditing={() => null}
+        onSubmitEditing={() => navigation.navigate('ListSearch',{
+          value:searchQuery
+        })}
         style={{
           backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
         }}
@@ -27,6 +30,9 @@ const SearchForm = () => {
         inputStyle={{color: theme.PRIMARY_TEXT_COLOR}}
         placeholderTextColor={theme.PRIMARY_TEXT_COLOR}
         autoFocus
+        onIconPress={() => navigation.navigate('ListSearch',{
+          value:searchQuery
+        })}
       />
       <View style={localStyles.suggestions}>
         <ButtonTheme

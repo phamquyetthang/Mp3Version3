@@ -23,7 +23,7 @@ export default function Login() {
     email: '',
     pass: '',
   });
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
   function onChangeEmail(e) {
     setUser({
       ...user,
@@ -72,13 +72,17 @@ export default function Login() {
         }
       }
       if (check) {
-        storeData(myacc);
+        if(checked){
+          storeData(myacc);
+        }
+        
         navigation.navigate('Main');
       } else {
         Alert.alert('Tài khoản sai');
       }
     }
   }
+  
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ContainerView style={Styles.loginForm}>

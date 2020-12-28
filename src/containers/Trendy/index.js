@@ -4,7 +4,7 @@ import {styles} from './styles';
 import * as shape from 'd3-shape';
 import {LineChart, XAxis} from 'react-native-svg-charts';
 import {Container} from '../../asset/styles/themes';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import SongItem from '../../components/SongItem';
 import {useIsFocused} from '@react-navigation/native';
 import {setIsPlayingAction} from '../../redux/actions';
@@ -48,6 +48,7 @@ const Trendy = () => {
   const theme = useSelector((state) => state.theme);
   const music = useSelector((state) => state.listMusic);
   const isFocused = useIsFocused();
+  const dispatch = useDispatch()
   return (
     <Container theme={theme}>
       <View style={{padding: 4, marginBottom: 12}}>
@@ -87,7 +88,7 @@ const Trendy = () => {
               item={item}
               trend={true}
               openInfo={() => null}
-              handlePress={() => setIsPlayingAction(item)}
+              handlePress={() => dispatch(setIsPlayingAction(item))}
               background={state.linePress == item.id ? {backgroundColor: '#9257df'} : {}}
             />
           )}
