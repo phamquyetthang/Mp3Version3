@@ -4,8 +4,8 @@ import {unitH} from '../../asset/styles/size';
 import Local from './Local';
 import Stream from './Stream';
 import {View} from 'react-native';
-import { styles } from './styles';
-import { useIsFocused } from '@react-navigation/native';
+import {styles} from './styles';
+import {useIsFocused} from '@react-navigation/native';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -13,29 +13,30 @@ const Library = () => {
   const isFocused = useIsFocused();
 
   return (
-    <View style={styles.container}>
-      <Tab.Navigator
-        initialRouteName="Stream"
-        tabBarOptions={{
-          activeTintColor: '#3E2AD1',
-          inactiveTintColor: '#99999F',
-          showIcon: false,
-          showLabel: true,
-          style: {height: 56 * unitH, backgroundColor: '#231a37'},
-        }}>
-        <Tab.Screen
-          name="Stream"
-          component={Stream}
-          options={{title: 'Playlist'}}
-          isFocused={isFocused}
-        />
-        <Tab.Screen
-          name="Local"
-          component={Local}
-          options={{title: 'Thiết bị'}}
-        />
-      </Tab.Navigator>
-    </View>
+    isFocused && (
+      <View style={styles.container}>
+        <Tab.Navigator
+          initialRouteName="Stream"
+          tabBarOptions={{
+            activeTintColor: '#3E2AD1',
+            inactiveTintColor: '#99999F',
+            showIcon: false,
+            showLabel: true,
+            style: {height: 56 * unitH, backgroundColor: '#231a37'},
+          }}>
+          <Tab.Screen
+            name="Stream"
+            component={Stream}
+            options={{title: 'Playlist'}}
+          />
+          <Tab.Screen
+            name="Local"
+            component={Local}
+            options={{title: 'Thiết bị'}}
+          />
+        </Tab.Navigator>
+      </View>
+    )
   );
 };
 

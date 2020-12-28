@@ -28,7 +28,6 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
       const response = await fetch(
         `https://fakeserver-musicaap.herokuapp.com/playlist`,
       );
-      // console.log(response)
       const jsonData = await response.json();
       setAllPlaylist(jsonData);
     } catch (e) {
@@ -37,7 +36,7 @@ const InfoSongPopup = ({item, showInfo, hiddenInfo}) => {
   }
   useEffect(() => {
     getdata();
-  }, []);
+  }, [allPlaylist]);
   async function patchData(id, name) {
     let aaaa = musicCheck;
     for (let i = 0; i < allPlaylist.length; i++) {
