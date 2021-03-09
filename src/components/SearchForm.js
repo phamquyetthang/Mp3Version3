@@ -37,8 +37,8 @@ const SearchForm = () => {
       <View style={localStyles.suggestions}>
         <ButtonTheme
           style={localStyles.chip}
-          onPress={() => pressChip('Thu cuối')}>
-          <TextWhite>Thu cuối</TextWhite>
+          onPress={() => pressChip('Bông Hoa Đẹp Nhất')}>
+          <TextWhite>Bông hoa đẹp nhất</TextWhite>
         </ButtonTheme>
         <ButtonTheme
           style={localStyles.chip}
@@ -57,8 +57,8 @@ const SearchForm = () => {
         </ButtonTheme>
         <ButtonTheme
           style={localStyles.chip}
-          onPress={() => pressChip('Tân cổ giao duyên')}>
-          <TextWhite>Tân cổ giao duyên</TextWhite>
+          onPress={() => pressChip('Chếc Khăn Gió Ấm')}>
+          <TextWhite>Chếc Khăn Gió Ấm</TextWhite>
         </ButtonTheme>
       </View>
     </ContainerView>

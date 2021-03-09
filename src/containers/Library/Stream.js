@@ -31,7 +31,7 @@ const Stream = () => {
     }
   }
   useEffect(() => {
-    console.log('fc',isFocused)
+    // console.log('fc',isFocused)
     getdata();
   }, []);
   async function postPlaylist(data) {
